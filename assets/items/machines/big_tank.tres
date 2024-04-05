@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://vhg6vjhbtimh"]
+
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_xwsi1"]
+
+[resource]
+script = ExtResource("1_xwsi1")
+name = "Gas Tank (Big)"
+reference = "big_tank"
+item_class = "storage"

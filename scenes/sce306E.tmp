@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6360g20bxfn"]
+
+[ext_resource type="PackedScene" uid="uid://di56gyaffvbyg" path="res://scenes/TEST.tscn" id="1_7upmk"]
+[ext_resource type="Script" path="res://scripts/scene_handler.gd" id="1_h1pr5"]
+
+[node name="SceneHandler" type="Node2D"]
+script = ExtResource("1_h1pr5")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+scaling_3d_scale = 0.4
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="JUPITER" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_7upmk")]
+
+[connection signal="resized" from="SubViewportContainer" to="." method="_on_sub_viewport_container_resized"]

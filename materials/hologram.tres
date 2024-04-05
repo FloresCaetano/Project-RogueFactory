@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://da0liw5raouid"]
+
+[ext_resource type="Shader" path="res://shaders/AlternativeHologram.gdshader" id="1_dp6he"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dp6he")
+shader_parameter/line_color = Color(0.164706, 0.262745, 0.560784, 1)
+shader_parameter/line_width = 0.003
+shader_parameter/line_blur = 0.263
+shader_parameter/line_speed = 0.1
+shader_parameter/straight_lines = true
+shader_parameter/interrupt_width = 0.5
+shader_parameter/interrupt_blur = 0.25
+shader_parameter/interrupt_speed = 0.2
+shader_parameter/glow_color = Color(0.0745098, 0.133333, 0.309804, 1)
+shader_parameter/glow_itensity = 4.5
+shader_parameter/glow_amount = 4.5
+shader_parameter/flickering = 0.55

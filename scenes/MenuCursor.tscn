@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj5fr51hu6sd8"]
+
+[ext_resource type="Texture2D" uid="uid://cb5ffabycg8ue" path="res://assets/cursor/MenuSelectCursor.png" id="1_217yq"]
+[ext_resource type="Script" path="res://scripts/MenuCursor.gd" id="2_ql108"]
+
+[node name="MenuCursor" type="TextureRect"]
+texture_filter = 1
+texture = ExtResource("1_217yq")
+script = ExtResource("2_ql108")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://luksdu5x8vcs"]
+
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_7u230"]
+[ext_resource type="Texture2D" uid="uid://b0jkj5qyw80if" path="res://assets/items/machines/small_gasCollector_icon.png" id="2_hqlvp"]
+
+[resource]
+script = ExtResource("1_7u230")
+name = "Gas Collector (small)"
+texture = ExtResource("2_hqlvp")
+reference = "small_gasCollector"
+item_class = "farming"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=4 format=3 uid="uid://c2l1wqgah7sqn"]
+
+[ext_resource type="Script" path="res://scripts/Inventory.gd" id="1_p15d7"]
+[ext_resource type="Resource" uid="uid://ceatbh6guoosw" path="res://assets/items/machines/medium_gasCollector.tres" id="1_w4cu0"]
+[ext_resource type="Resource" uid="uid://vhg6vjhbtimh" path="res://assets/items/machines/big_tank.tres" id="2_advh7"]
+
+[resource]
+script = ExtResource("1_p15d7")
+items = Array[Resource]([ExtResource("1_w4cu0"), ExtResource("2_advh7")])

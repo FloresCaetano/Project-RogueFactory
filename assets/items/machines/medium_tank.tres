@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://bt306qnrv0trl"]
+
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_eo0l4"]
+
+[sub_resource type="Gradient" id="Gradient_i6xnd"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mfa47"]
+gradient = SubResource("Gradient_i6xnd")
+
+[resource]
+script = ExtResource("1_eo0l4")
+name = "Gas Tank (medium)"
+texture = SubResource("GradientTexture2D_mfa47")
+reference = "medium_tank"
+item_class = "container"

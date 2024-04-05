@@ -1,0 +1,709 @@
+[gd_scene load_steps=12 format=3 uid="uid://di56gyaffvbyg"]
+
+[ext_resource type="PackedScene" uid="uid://duq71aqldxojb" path="res://scenes/player.tscn" id="1_nci2w"]
+[ext_resource type="PackedScene" uid="uid://bisrhwkcfac4t" path="res://scenes/big_tank.tscn" id="2_acrqj"]
+[ext_resource type="PackedScene" uid="uid://cnwim2vadmgsu" path="res://scenes/small_gasCollector.tscn" id="3_lrkq4"]
+[ext_resource type="PackedScene" uid="uid://d12po5dspecxi" path="res://scenes/medium_gasCollector.tscn" id="4_kmcwk"]
+[ext_resource type="PackedScene" uid="uid://bnfmrnl1p8w52" path="res://scenes/medium_tank.tscn" id="5_yrhpy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i5qhu"]
+
+[sub_resource type="Sky" id="Sky_osyly"]
+sky_material = SubResource("ProceduralSkyMaterial_i5qhu")
+
+[sub_resource type="Environment" id="Environment_1ke8m"]
+sky = SubResource("Sky_osyly")
+ambient_light_source = 3
+ambient_light_energy = 5.0
+fog_light_color = Color(0.839216, 0.65098, 0.541176, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.06
+volumetric_fog_albedo = Color(0.913725, 0.729412, 0.576471, 1)
+volumetric_fog_ambient_inject = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sryer"]
+shading_mode = 0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dt8u4"]
+emission_shape = 3
+emission_box_extents = Vector3(50, 50, 50)
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_prtq5"]
+size = Vector2(0.05, 0.05)
+
+[node name="JUPITER" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.359862, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1ke8m")
+
+[node name="Player" parent="." instance=ExtResource("1_nci2w")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.237186, 0.429718, -0.104526)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Player"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.552189, 0.244471, 0.136094)
+material_override = SubResource("StandardMaterial3D_sryer")
+lod_bias = 0.001
+amount = 100000
+lifetime = 30.0
+fixed_fps = 10
+fract_delta = false
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_dt8u4")
+draw_pass_1 = SubResource("QuadMesh_prtq5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-1, -5.93304e-16, -8.74228e-08, -5.0661e-08, 0.814976, 0.579494, 7.12475e-08, 0.579494, -0.814976, 5.7499, 45.9262, -48.8731)
+
+[node name="big_tank" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -7.95835)
+
+[node name="small_gasCollector" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -7.48651)
+
+[node name="medium_GasCollector" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -8.03887)
+
+[node name="medium_tank" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -8.21746)
+
+[node name="big_tank2" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -11.1177)
+
+[node name="small_gasCollector2" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -10.6459)
+
+[node name="medium_GasCollector2" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -11.1983)
+
+[node name="medium_tank2" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -11.3768)
+
+[node name="big_tank3" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -14.5845)
+
+[node name="small_gasCollector3" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -14.1126)
+
+[node name="medium_GasCollector3" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -14.665)
+
+[node name="medium_tank3" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -14.8436)
+
+[node name="big_tank4" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -17.8617)
+
+[node name="small_gasCollector4" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -17.3898)
+
+[node name="medium_GasCollector4" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -17.9422)
+
+[node name="medium_tank4" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -18.1208)
+
+[node name="big_tank5" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -21.0211)
+
+[node name="small_gasCollector5" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -20.5492)
+
+[node name="medium_GasCollector5" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -21.1016)
+
+[node name="medium_tank5" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -21.2802)
+
+[node name="big_tank6" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -24.4878)
+
+[node name="small_gasCollector6" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -24.016)
+
+[node name="medium_GasCollector6" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -24.5683)
+
+[node name="medium_tank6" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -24.7469)
+
+[node name="big_tank7" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -28.389)
+
+[node name="small_gasCollector7" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -27.9172)
+
+[node name="medium_GasCollector7" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -28.4695)
+
+[node name="medium_tank7" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -28.6481)
+
+[node name="big_tank8" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -31.5484)
+
+[node name="small_gasCollector8" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -31.0765)
+
+[node name="medium_GasCollector8" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -31.6289)
+
+[node name="medium_tank8" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -31.8075)
+
+[node name="big_tank9" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -35.0151)
+
+[node name="small_gasCollector9" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -34.5433)
+
+[node name="medium_GasCollector9" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -35.0956)
+
+[node name="medium_tank9" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -35.2742)
+
+[node name="big_tank10" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -38.8279)
+
+[node name="small_gasCollector10" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -38.3561)
+
+[node name="medium_GasCollector10" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -38.9084)
+
+[node name="medium_tank10" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -39.087)
+
+[node name="big_tank11" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -41.9873)
+
+[node name="small_gasCollector11" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -41.5155)
+
+[node name="medium_GasCollector11" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -42.0678)
+
+[node name="medium_tank11" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -42.2464)
+
+[node name="big_tank12" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -45.454)
+
+[node name="small_gasCollector12" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -44.9822)
+
+[node name="medium_GasCollector12" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -45.5346)
+
+[node name="medium_tank12" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -45.7131)
+
+[node name="big_tank13" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -48.4805)
+
+[node name="small_gasCollector13" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -48.0087)
+
+[node name="medium_GasCollector13" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -48.5611)
+
+[node name="medium_tank13" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -48.7397)
+
+[node name="big_tank14" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -51.6399)
+
+[node name="small_gasCollector14" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -51.1681)
+
+[node name="medium_GasCollector14" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -51.7204)
+
+[node name="medium_tank14" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -51.899)
+
+[node name="big_tank15" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -55.1067)
+
+[node name="small_gasCollector15" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -54.6348)
+
+[node name="medium_GasCollector15" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -55.1872)
+
+[node name="medium_tank15" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -55.3658)
+
+[node name="big_tank16" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -57.9444)
+
+[node name="small_gasCollector16" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -57.4726)
+
+[node name="medium_GasCollector16" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -58.025)
+
+[node name="medium_tank16" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -58.2035)
+
+[node name="big_tank17" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -61.1038)
+
+[node name="small_gasCollector17" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -60.632)
+
+[node name="medium_GasCollector17" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -61.1843)
+
+[node name="medium_tank17" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -61.3629)
+
+[node name="big_tank18" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317807, -0.359862, -64.5705)
+
+[node name="small_gasCollector18" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75791, -0.359862, -64.0987)
+
+[node name="medium_GasCollector18" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87924, -0.359862, -64.6511)
+
+[node name="medium_tank18" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32944, -0.359862, -64.8297)
+
+[node name="big_tank19" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -7.95835)
+
+[node name="small_gasCollector19" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -7.48651)
+
+[node name="medium_GasCollector19" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -8.03887)
+
+[node name="medium_tank19" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -8.21746)
+
+[node name="big_tank20" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -11.1177)
+
+[node name="small_gasCollector20" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -10.6459)
+
+[node name="medium_GasCollector20" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -11.1983)
+
+[node name="medium_tank20" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -11.3768)
+
+[node name="big_tank21" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -14.5845)
+
+[node name="small_gasCollector21" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -14.1126)
+
+[node name="medium_GasCollector21" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -14.665)
+
+[node name="medium_tank21" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -14.8436)
+
+[node name="big_tank22" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -17.8617)
+
+[node name="small_gasCollector22" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -17.3898)
+
+[node name="medium_GasCollector22" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -17.9422)
+
+[node name="medium_tank22" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -18.1208)
+
+[node name="big_tank23" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -21.0211)
+
+[node name="small_gasCollector23" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -20.5492)
+
+[node name="medium_GasCollector23" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -21.1016)
+
+[node name="medium_tank23" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -21.2802)
+
+[node name="big_tank24" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -24.4878)
+
+[node name="small_gasCollector24" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -24.016)
+
+[node name="medium_GasCollector24" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -24.5683)
+
+[node name="medium_tank24" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -24.7469)
+
+[node name="big_tank25" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -28.389)
+
+[node name="small_gasCollector25" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -27.9172)
+
+[node name="medium_GasCollector25" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -28.4695)
+
+[node name="medium_tank25" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -28.6481)
+
+[node name="big_tank26" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -31.5484)
+
+[node name="small_gasCollector26" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -31.0765)
+
+[node name="medium_GasCollector26" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -31.6289)
+
+[node name="medium_tank26" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -31.8075)
+
+[node name="big_tank27" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -35.0151)
+
+[node name="small_gasCollector27" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -34.5433)
+
+[node name="medium_GasCollector27" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -35.0956)
+
+[node name="medium_tank27" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -35.2742)
+
+[node name="big_tank28" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -38.8279)
+
+[node name="small_gasCollector28" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -38.3561)
+
+[node name="medium_GasCollector28" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -38.9084)
+
+[node name="medium_tank28" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -39.087)
+
+[node name="big_tank29" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -41.9873)
+
+[node name="small_gasCollector29" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -41.5155)
+
+[node name="medium_GasCollector29" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -42.0678)
+
+[node name="medium_tank29" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -42.2464)
+
+[node name="big_tank30" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -45.454)
+
+[node name="small_gasCollector30" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -44.9822)
+
+[node name="medium_GasCollector30" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -45.5346)
+
+[node name="medium_tank30" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -45.7131)
+
+[node name="big_tank31" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -48.4805)
+
+[node name="small_gasCollector31" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -48.0087)
+
+[node name="medium_GasCollector31" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -48.5611)
+
+[node name="medium_tank31" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -48.7397)
+
+[node name="big_tank32" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -51.6399)
+
+[node name="small_gasCollector32" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -51.1681)
+
+[node name="medium_GasCollector32" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -51.7204)
+
+[node name="medium_tank32" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -51.899)
+
+[node name="big_tank33" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -55.1067)
+
+[node name="small_gasCollector33" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -54.6348)
+
+[node name="medium_GasCollector33" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -55.1872)
+
+[node name="medium_tank33" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -55.3658)
+
+[node name="big_tank34" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -57.9444)
+
+[node name="small_gasCollector34" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -57.4726)
+
+[node name="medium_GasCollector34" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -58.025)
+
+[node name="medium_tank34" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -58.2035)
+
+[node name="big_tank35" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -61.1038)
+
+[node name="small_gasCollector35" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -60.632)
+
+[node name="medium_GasCollector35" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -61.1843)
+
+[node name="medium_tank35" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -61.3629)
+
+[node name="big_tank36" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4399, -0.359862, -64.5705)
+
+[node name="small_gasCollector36" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -0.359862, -64.0987)
+
+[node name="medium_GasCollector36" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24282, -0.359862, -64.6511)
+
+[node name="medium_tank36" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4515, -0.359862, -64.8297)
+
+[node name="big_tank37" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -7.95835)
+
+[node name="small_gasCollector37" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -7.48651)
+
+[node name="medium_GasCollector37" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -8.03887)
+
+[node name="medium_tank37" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -8.21746)
+
+[node name="big_tank38" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -11.1177)
+
+[node name="small_gasCollector38" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -10.6459)
+
+[node name="medium_GasCollector38" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -11.1983)
+
+[node name="medium_tank38" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -11.3768)
+
+[node name="big_tank39" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -14.5845)
+
+[node name="small_gasCollector39" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -14.1126)
+
+[node name="medium_GasCollector39" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -14.665)
+
+[node name="medium_tank39" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -14.8436)
+
+[node name="big_tank40" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -17.8617)
+
+[node name="small_gasCollector40" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -17.3898)
+
+[node name="medium_GasCollector40" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -17.9422)
+
+[node name="medium_tank40" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -18.1208)
+
+[node name="big_tank41" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -21.0211)
+
+[node name="small_gasCollector41" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -20.5492)
+
+[node name="medium_GasCollector41" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -21.1016)
+
+[node name="medium_tank41" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -21.2802)
+
+[node name="big_tank42" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -24.4878)
+
+[node name="small_gasCollector42" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -24.016)
+
+[node name="medium_GasCollector42" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -24.5683)
+
+[node name="medium_tank42" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -24.7469)
+
+[node name="big_tank43" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -28.389)
+
+[node name="small_gasCollector43" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -27.9172)
+
+[node name="medium_GasCollector43" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -28.4695)
+
+[node name="medium_tank43" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -28.6481)
+
+[node name="big_tank44" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -31.5484)
+
+[node name="small_gasCollector44" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -31.0765)
+
+[node name="medium_GasCollector44" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -31.6289)
+
+[node name="medium_tank44" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -31.8075)
+
+[node name="big_tank45" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -35.0151)
+
+[node name="small_gasCollector45" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -34.5433)
+
+[node name="medium_GasCollector45" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -35.0956)
+
+[node name="medium_tank45" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -35.2742)
+
+[node name="big_tank46" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -38.8279)
+
+[node name="small_gasCollector46" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -38.3561)
+
+[node name="medium_GasCollector46" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -38.9084)
+
+[node name="medium_tank46" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -39.087)
+
+[node name="big_tank47" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -41.9873)
+
+[node name="small_gasCollector47" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -41.5155)
+
+[node name="medium_GasCollector47" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -42.0678)
+
+[node name="medium_tank47" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -42.2464)
+
+[node name="big_tank48" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -45.454)
+
+[node name="small_gasCollector48" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -44.9822)
+
+[node name="medium_GasCollector48" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -45.5346)
+
+[node name="medium_tank48" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -45.7131)
+
+[node name="big_tank49" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -48.4805)
+
+[node name="small_gasCollector49" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -48.0087)
+
+[node name="medium_GasCollector49" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -48.5611)
+
+[node name="medium_tank49" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -48.7397)
+
+[node name="big_tank50" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -51.6399)
+
+[node name="small_gasCollector50" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -51.1681)
+
+[node name="medium_GasCollector50" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -51.7204)
+
+[node name="medium_tank50" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -51.899)
+
+[node name="big_tank51" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -55.1067)
+
+[node name="small_gasCollector51" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -54.6348)
+
+[node name="medium_GasCollector51" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -55.1872)
+
+[node name="medium_tank51" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -55.3658)
+
+[node name="big_tank52" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -57.9444)
+
+[node name="small_gasCollector52" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -57.4726)
+
+[node name="medium_GasCollector52" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -58.025)
+
+[node name="medium_tank52" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -58.2035)
+
+[node name="big_tank53" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -61.1038)
+
+[node name="small_gasCollector53" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -60.632)
+
+[node name="medium_GasCollector53" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -61.1843)
+
+[node name="medium_tank53" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -61.3629)
+
+[node name="big_tank54" parent="." instance=ExtResource("2_acrqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.399, -0.359862, -64.5705)
+
+[node name="small_gasCollector54" parent="." instance=ExtResource("3_lrkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3233, -0.359862, -64.0987)
+
+[node name="medium_GasCollector54" parent="." instance=ExtResource("4_kmcwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2019, -0.359862, -64.6511)
+
+[node name="medium_tank54" parent="." instance=ExtResource("5_yrhpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4106, -0.359862, -64.8297)
