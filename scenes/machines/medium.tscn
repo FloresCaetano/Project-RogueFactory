@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8h63j73jcvhg"]
+
+[ext_resource type="PackedScene" uid="uid://ctblt6cq1tbu1" path="res://assets/Machines/medium_gasCollector/medium_GasCollector.gltf" id="1_hfdyy"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="medium_GasCollector" parent="." instance=ExtResource("1_hfdyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.428348, 0, 0)

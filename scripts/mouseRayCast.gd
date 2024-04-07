@@ -1,0 +1,16 @@
+extends Node3D
+@onready var camera = $".."
+@onready var player = $"../../.."
+const build_distance = 10
+
+
+func calc_3D_interactions(mask):
+	var mouse_pos = get_viewport().get_mouse_position()
+	var origin = camera.project_ray_origin(mouse_pos)
+	var end = camera.project_position(mouse_pos, build_distance)
+	var ray_params = PhysicsRayQueryParameters3D.create(origin, end)
+	ray_params.collide_with_areas = true
+	ray_params.collide_with_bodies = true
+	#ray_params.collision_mask = mask
+	var ray = get_world_3d().direct_space_state.intersect_ray(ray_params)
+	return ray

@@ -1,13 +1,19 @@
 extends CharacterBody3D
+#DEBUG
+@onready var DebugLabel = $Label
+#
 @onready var animator = $NAUT/AnimatorSmoothing
 @onready var Pivote = $Pivote
 @onready var Camera = $Pivote/Camera3D
 @onready var MouseRayCast = $Pivote/Camera3D/MouseRayCast
+@onready var BuildGrid : GridMap = get_tree().get_nodes_in_group("Build_Grid")[0]
+var gravity = 15
 
-var gravity = 9.8
-
+#SIGNALS
+signal build_mode_on
+signal build_mode_off
 #STATES
-var build_mode = false
+var can_build = false
 var can_move = true
 var moving_camera = false
 
@@ -15,6 +21,7 @@ var moving_camera = false
 func _ready():
 	pass
 func _physics_process(delta):
+	
 	#print(Engine.get_frames_per_second())
 	if gravity == 0:
 		space_move(delta, get_input())
@@ -22,16 +29,20 @@ func _physics_process(delta):
 		move(delta, get_input())
 
 func move(delta, input):
-	var speed = 5
+	if Input.is_action_just_pressed("Intro"):
+		emit_signal("build_mode_on")
+	if Input.is_action_just_pressed("Escape"):
+		emit_signal("build_mode_off")
+	var max_speed = 6
 	var acceleration = 0.04
 	var desaceleration = 0.2
 	var impulse = Vector3(
 		Pivote.transform.basis.x.x * input.x + Pivote.transform.basis.z.x * input.z,
-		input.y,
+		0,
 		Pivote.transform.basis.x.z * input.x + Pivote.transform.basis.z.z * input.z
-		).normalized() * speed
+		).normalized() * max_speed
 	velocity.y -= gravity * delta
-	if input != Vector3.ZERO:
+	if input.x != 0 or input.z != 0:
 		velocity.x = lerp(velocity.x, impulse.x, acceleration)
 		velocity.z = lerp(velocity.z, impulse.z, acceleration)
 	else:
@@ -41,6 +52,8 @@ func move(delta, input):
 		$NAUT.rotation.y = lerp_angle(
 			$NAUT.rotation.y, atan2(impulse.x, impulse.z), delta * 3)
 	move_and_slide()
+	DebugLabel.text = "Speed: " + str(velocity)
+	DebugLabel.text += "\nImpulse: " + str(impulse)
 
 func space_move(delta, input):
 	var speed = 10
@@ -52,7 +65,7 @@ func space_move(delta, input):
 	if input != Vector3():
 		vel = lerp(velocity, impulse, acceleration)
 	else:
-		vel = lerp(velocity, Vector3(), desaceleration)
+		vel = lerp(velocity, Vector3.ZERO, desaceleration)
 	if impulse != Vector3():
 		$NAUT.rotation.y = lerp_angle(
 			$NAUT.rotation.y, atan2(-impulse.x, -impulse.z), delta * 3)

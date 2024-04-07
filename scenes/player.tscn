@@ -1,9 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://duq71aqldxojb"]
+[gd_scene load_steps=29 format=3 uid="uid://duq71aqldxojb"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_h4uls"]
 [ext_resource type="Texture2D" uid="uid://barrfka6lfdt3" path="res://assets/player/NAUT_Texture.png" id="3_okgsb"]
 [ext_resource type="AnimationLibrary" uid="uid://p4668rdlybul" path="res://animations/player/playerAnim.res" id="4_d8sjk"]
 [ext_resource type="Script" path="res://scripts/pivote.gd" id="4_mcvcc"]
+[ext_resource type="Script" path="res://scripts/mouseRayCast.gd" id="5_2d36i"]
+[ext_resource type="Script" path="res://scripts/InteractionHandler.gd" id="6_7ix37"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05r8q"]
 resource_name = "Material.001"
@@ -227,35 +229,6 @@ nodes/BlendSpace2D/position = Vector2(266.667, 106.667)
 nodes/output/position = Vector2(826.667, 106.667)
 node_connections = [&"Blend2", 0, &"BlendSpace2D", &"Blend2", 1, &"BlendSpace1D", &"output", 0, &"Blend2"]
 
-[sub_resource type="GDScript" id="GDScript_si8qd"]
-script/source = "extends Node3D
-@onready var camera = $\"..\"
-@onready var player = $\"../../..\"
-const build_distance = 10
-
-func calc_build_coords():
-	var mouse_pos = get_viewport().get_mouse_position()
-	var grid_size = Vector3(0.2, 0.2, 0.2)
-	var build_coordinate = camera.project_position(mouse_pos, build_distance)
-	var build_place = Vector3(
-		round(build_coordinate.x / grid_size.x) * grid_size.x,
-		round(build_coordinate.y / grid_size.y) * grid_size.y,
-		round(build_coordinate.z / grid_size.z) * grid_size.z
-	)
-	return build_place
-
-func calc_3D_interactions(mask):
-	var mouse_pos = get_viewport().get_mouse_position()
-	var origin = camera.project_ray_origin(mouse_pos)
-	var end = camera.project_position(mouse_pos, build_distance)
-	var ray_params = PhysicsRayQueryParameters3D.create(origin, end)
-	ray_params.collide_with_areas = false
-	ray_params.collide_with_bodies = true
-	ray_params.collision_mask = mask
-	var ray = get_world_3d().direct_space_state.intersect_ray(ray_params)
-	return ray
-"
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c3ax6"]
 
 [node name="Player" type="CharacterBody3D"]
@@ -300,7 +273,7 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5306, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 0.5306, 0)
-bones/2/rotation = Quaternion(0.0237181, 1.06432e-05, 0.000166272, 0.999719)
+bones/2/rotation = Quaternion(0.0229876, 1.05217e-05, 0.00016628, 0.999736)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "neck"
 bones/3/parent = 2
@@ -320,15 +293,15 @@ bones/5/name = "L.shoulder"
 bones/5/parent = -1
 bones/5/rest = Transform3D(2.38419e-06, 0.999999, 0.00155067, 0.00155067, -0.00155067, 0.999998, 0.999999, 0, -0.00155067, 1.10261, 1.64335, 1.38901)
 bones/5/enabled = true
-bones/5/position = Vector3(1.10238, 1.64505, 1.4594)
-bones/5/rotation = Quaternion(0.680643, 0.185616, 0.682452, -0.191131)
+bones/5/position = Vector3(1.10238, 1.64507, 1.45861)
+bones/5/rotation = Quaternion(0.680651, 0.185286, 0.682442, -0.19146)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "L.arm"
 bones/6/parent = 5
 bones/6/rest = Transform3D(0.999999, 2.40455e-06, 0.00155066, 1.13687e-13, 0.999999, -0.00155066, -0.00155066, 0.00155066, 0.999998, -6.91671e-10, 0.827729, -1.5829e-07)
 bones/6/enabled = true
 bones/6/position = Vector3(-6.91671e-10, 0.827729, -1.5829e-07)
-bones/6/rotation = Quaternion(-0.119488, -0.0706024, -0.179088, 0.973995)
+bones/6/rotation = Quaternion(-0.119483, -0.0704903, -0.178498, 0.974112)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "L.hand"
 bones/7/parent = 6
@@ -342,14 +315,14 @@ bones/8/parent = -1
 bones/8/rest = Transform3D(1, 0, 0, 0, -0.999452, 0.0331038, 0, -0.0331038, -0.999452, 0.395164, -0.126271, 1.38405)
 bones/8/enabled = true
 bones/8/position = Vector3(0.395129, -0.126446, 1.38405)
-bones/8/rotation = Quaternion(0.998463, 0.0552646, -0.00388722, 0.00126686)
+bones/8/rotation = Quaternion(0.998464, 0.0552686, -0.00380515, 0.00028211)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "L.leg"
 bones/9/parent = 8
 bones/9/rest = Transform3D(1, 0, 0, 0, 0.998503, 0.0547008, 0, -0.0547008, 0.998503, -2.98023e-08, 1.16149, 3.72529e-09)
 bones/9/enabled = true
 bones/9/position = Vector3(-2.98023e-08, 1.16149, 3.72529e-09)
-bones/9/rotation = Quaternion(0.0783537, 0.00374955, 0.0397572, 0.996126)
+bones/9/rotation = Quaternion(0.0773084, 0.00369931, 0.0397641, 0.996207)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "L.foot"
 bones/10/parent = 9
@@ -362,15 +335,15 @@ bones/11/name = "R.shoulder"
 bones/11/parent = -1
 bones/11/rest = Transform3D(2.38419e-06, -0.999999, -0.00155067, -0.00155067, -0.00155067, 0.999998, -0.999999, 0, -0.00155067, -1.10261, 1.64335, 1.38901)
 bones/11/enabled = true
-bones/11/position = Vector3(-1.10275, 1.64432, 1.4594)
-bones/11/rotation = Quaternion(0.680606, -0.185688, -0.682566, -0.190785)
+bones/11/position = Vector3(-1.10275, 1.64434, 1.45861)
+bones/11/rotation = Quaternion(0.680614, -0.185358, -0.682556, -0.191113)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "R.arm"
 bones/12/parent = 11
 bones/12/rest = Transform3D(0.999999, -2.40455e-06, -0.00155066, -1.13687e-13, 0.999999, -0.00155066, 0.00155066, 0.00155066, 0.999998, 4.65207e-10, 0.827729, -1.20726e-08)
 bones/12/enabled = true
 bones/12/position = Vector3(4.65207e-10, 0.827729, -1.20726e-08)
-bones/12/rotation = Quaternion(-0.119472, 0.0705999, 0.179089, 0.973997)
+bones/12/rotation = Quaternion(-0.119466, 0.0704879, 0.178499, 0.974114)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "R.hand"
 bones/13/parent = 12
@@ -384,14 +357,14 @@ bones/14/parent = -1
 bones/14/rest = Transform3D(1, 0, 0, 0, -0.999452, 0.0331038, 0, -0.0331038, -0.999452, -0.395164, -0.126271, 1.38405)
 bones/14/enabled = true
 bones/14/position = Vector3(-0.395129, -0.126095, 1.38405)
-bones/14/rotation = Quaternion(0.998255, -0.0590387, 0.000260025, 0.00135066)
+bones/14/rotation = Quaternion(0.998256, -0.0590391, 0.0001746, 0.000366184)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "R.leg"
 bones/15/parent = 14
 bones/15/rest = Transform3D(1, 0, 0, 0, 0.998503, 0.0547008, 0, -0.0547008, 0.998503, 0, 1.16149, 3.72529e-09)
 bones/15/enabled = true
 bones/15/position = Vector3(0, 1.16149, 3.72529e-09)
-bones/15/rotation = Quaternion(0.078355, -0.00368442, -0.039391, 0.99614)
+bones/15/rotation = Quaternion(0.0773096, -0.00363457, -0.0393979, 0.996222)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "R.foot"
 bones/16/parent = 15
@@ -429,7 +402,7 @@ parameters/BlendSpace2D/blend_position = Vector2(0.00232017, -0.00581396)
 parameters/BlendSpace2D/4/blend_position = Vector2(0, 0)
 
 [node name="Pivote" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0719411, 0)
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0.0719411, 0)
 script = ExtResource("4_mcvcc")
 
 [node name="Camera3D" type="Camera3D" parent="Pivote"]
@@ -439,8 +412,18 @@ fov = 103.0
 
 [node name="MouseRayCast" type="Node3D" parent="Pivote/Camera3D"]
 transform = Transform3D(1, -7.10543e-15, 0, 0, 0.999997, 0, 0, 0, 0.999997, 0, 0, 0)
-script = SubResource("GDScript_si8qd")
+script = ExtResource("5_2d36i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_c3ax6")
+
+[node name="InteractionHandler" type="Node" parent="."]
+script = ExtResource("6_7ix37")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 350.0
+offset_bottom = 23.0
+
+[connection signal="build_mode_off" from="." to="InteractionHandler" method="_on_player_build_mode_off"]
+[connection signal="build_mode_on" from="." to="InteractionHandler" method="_on_player_build_mode_on"]
