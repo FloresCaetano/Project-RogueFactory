@@ -38,10 +38,6 @@ func _physics_process(delta):
 		move(delta, get_input())
 
 func move(delta, input):
-	if Input.is_action_just_pressed("Intro"):
-		emit_signal("build_mode_on")
-	if Input.is_action_just_pressed("Escape"):
-		emit_signal("build_mode_off")
 	var max_speed = 4
 	var acceleration = 0.04
 	var desaceleration = 0.2

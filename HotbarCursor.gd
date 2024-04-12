@@ -3,7 +3,11 @@ extends Control
 @onready var SlotsContainer = $"../.."
 @onready var Slots = SlotsContainer.get_children()
 @onready var ParentSlot = self.get_parent()
+@onready var Player = get_tree().get_first_node_in_group("player")
+@onready var InteractionHandler = Player.get_node("InteractionHandler")
 var actual_slot = 0
+
+
 
 func _input(event):
 	var hotkey = HUD.get_inventory_hotkeys()
@@ -21,6 +25,20 @@ func _input(event):
 func change_parent(new_parent : Node):
 	ParentSlot.remove_child(self)
 	new_parent.add_child(self)
+	send_slot_data(new_parent)
 
 func get_slot_data():
 	return ParentSlot.get_slot_data()
+
+func send_slot_data(slot):
+	var slot_data = slot.get_slot_data()
+	var item : Item = slot_data.item
+	if item is Item and (item.type == "floor" or item.type == "machine"):
+		if Player.can_build == true:
+			Player.emit_signal("build_mode_off")
+		InteractionHandler.construction_name = item.tag
+		InteractionHandler.construction_type = item.type
+		Player.emit_signal("build_mode_on")
+	else:
+		Player.emit_signal("build_mode_off")
+	

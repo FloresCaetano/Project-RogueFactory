@@ -9,4 +9,4 @@ class_name Item
 @export var description: String = ""
 @export var tag: String = ""
 @export var need_snap : bool
-
+@export var type : String = ""

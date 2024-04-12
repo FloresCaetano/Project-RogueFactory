@@ -24,7 +24,6 @@ CyclopsAutoload="*res://addons/cyclops_level_builder/cyclops_global_scene.tscn"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
-window/size/mode=3
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
@@ -187,14 +186,18 @@ RotateLeft={
 
 [layer_names]
 
+3d_render/layer_2="occluder"
 3d_physics/layer_1="default"
 3d_physics/layer_2="preview_builds"
 3d_physics/layer_3="snaps"
+3d_physics/layer_10="ocluder"
 
 [rendering]
 
+occlusion_culling/bvh_build_quality=0
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method.mobile="gl_compatibility"
+occlusion_culling/use_occlusion_culling=true
 scaling_3d/stretch/aspect="expand"
 scaling_3d/stretch/mode="viewport"
 scaling_3d/size/mode=0

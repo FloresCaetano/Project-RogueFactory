@@ -10,5 +10,6 @@ name = "Big Tank"
 ammount = 17
 max_stack = 30
 description = "Tanque de gases grande"
-tag = "big_tank"
+tag = "medium_machine"
 need_snap = false
+type = "machine"

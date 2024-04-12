@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8h63j73jcvhg"]
+[gd_scene load_steps=3 format=3 uid="uid://c8h63j73jcvhg"]
 
 [ext_resource type="PackedScene" uid="uid://ctblt6cq1tbu1" path="res://assets/Machines/medium_gasCollector/medium_GasCollector.gltf" id="1_hfdyy"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eyqd7"]
+
+[node name="Node3D" type="StaticBody3D"]
+collision_layer = 0
 
 [node name="medium_GasCollector" parent="." instance=ExtResource("1_hfdyy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.428348, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_eyqd7")
