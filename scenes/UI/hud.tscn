@@ -1,0 +1,225 @@
+[gd_scene load_steps=8 format=3 uid="uid://cf8raw2n4h2rq"]
+
+[ext_resource type="Script" path="res://scenes/UI/hud.gd" id="1_k20gc"]
+[ext_resource type="Script" path="res://scenes/UI/inventory_ui.gd" id="2_jdgrm"]
+[ext_resource type="Texture2D" uid="uid://bbge6dqlr38mi" path="res://assets/GUI/inventory/Inventory Cell.png" id="3_1r53p"]
+[ext_resource type="Resource" uid="uid://bqudsv7kqtqbn" path="res://inventory/items/BigTank.tres" id="3_nh8cx"]
+[ext_resource type="Resource" uid="uid://cmdlko5n0h11q" path="res://inventory/items/MediumMachine.tres" id="4_be63k"]
+[ext_resource type="PackedScene" uid="uid://by42k7fv46sbi" path="res://scenes/UI/inv_ui_slot.tscn" id="4_n8ot2"]
+[ext_resource type="PackedScene" uid="uid://cc7m5s5xkwn5x" path="res://scenes/UI/hotbar_cursor.tscn" id="7_q236m"]
+
+[node name="Hud" type="Control" groups=["Hud"]]
+custom_minimum_size = Vector2(960, 540)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
+script = ExtResource("1_k20gc")
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="."]
+custom_minimum_size = Vector2(960, 540)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+split_offset = -225
+dragger_visibility = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VSplitContainer2"]
+layout_mode = 2
+split_offset = -35
+dragger_visibility = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VSplitContainer2/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="InventoryUI" type="Control" parent="VSplitContainer2/VSplitContainer/CenterContainer"]
+custom_minimum_size = Vector2(331, 114)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_jdgrm")
+items = Array[Resource("res://inventory/Invetory_Item.gd")]([ExtResource("3_nh8cx"), null, ExtResource("3_nh8cx"), ExtResource("3_nh8cx"), ExtResource("4_be63k"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI"]
+layout_mode = 0
+offset_right = 329.0
+offset_bottom = 115.0
+texture = ExtResource("3_1r53p")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="GridContainer" type="GridContainer" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect"]
+custom_minimum_size = Vector2(320, 104)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -52.0
+offset_right = 160.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 9
+
+[node name="InvUiSlot1" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot2" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot3" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot4" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot5" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot6" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot7" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot8" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot9" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot10" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot11" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot12" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot13" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot14" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot15" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot16" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot17" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot18" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot19" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot20" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot21" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot22" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot23" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot24" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot25" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot26" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot27" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="VSplitContainer2/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Hotbar" type="Control" parent="VSplitContainer2/VSplitContainer/CenterContainer2" groups=["Hotbar"]]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_jdgrm")
+can_hide = false
+items = Array[Resource("res://inventory/Invetory_Item.gd")]([null, null, null, null, null, null, null, null, null])
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VSplitContainer2/VSplitContainer/CenterContainer2/Hotbar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -164.5
+offset_top = -41.0
+offset_right = 164.5
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_1r53p")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="GridContainer" type="GridContainer" parent="VSplitContainer2/VSplitContainer/CenterContainer2/Hotbar/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -16.0
+offset_right = 160.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 9
+
+[node name="InvUiSlot1" parent="VSplitContainer2/VSplitContainer/CenterContainer2/Hotbar/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="HotbarCursor" parent="VSplitContainer2/VSplitContainer/CenterContainer2/Hotbar/NinePatchRect/GridContainer/InvUiSlot1" instance=ExtResource("7_q236m")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[node name="InvUiSlot2" parent="VSplitContainer2/VSplitContainer/CenterContainer2/Hotbar/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot3" parent="VSplitContainer2/VSplitContainer/CenterContainer2/Hotbar/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot4" parent="VSplitContainer2/VSplitContainer/CenterContainer2/Hotbar/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot5" parent="VSplitContainer2/VSplitContainer/CenterContainer2/Hotbar/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot6" parent="VSplitContainer2/VSplitContainer/CenterContainer2/Hotbar/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot7" parent="VSplitContainer2/VSplitContainer/CenterContainer2/Hotbar/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot8" parent="VSplitContainer2/VSplitContainer/CenterContainer2/Hotbar/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2
+
+[node name="InvUiSlot9" parent="VSplitContainer2/VSplitContainer/CenterContainer2/Hotbar/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
+layout_mode = 2

@@ -2,17 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1pxktg1bb521"
-path="res://.godot/imported/big_tank_0.png-153794a5c979371a5ae96b873f7885e2.ctex"
+uid="uid://bbge6dqlr38mi"
+path="res://.godot/imported/Inventory Cell.png-d1d4a76e0fc60a7f4635aa9aa266e3a8.ctex"
 metadata={
 "vram_texture": false
 }
-generator_parameters={}
 
 [deps]
 
-source_file="res://assets/Machines/big_tank/big_tank_0.png"
-dest_files=["res://.godot/imported/big_tank_0.png-153794a5c979371a5ae96b873f7885e2.ctex"]
+source_file="res://assets/GUI/inventory/Inventory Cell.png"
+dest_files=["res://.godot/imported/Inventory Cell.png-d1d4a76e0fc60a7f4635aa9aa266e3a8.ctex"]
 
 [params]
 
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

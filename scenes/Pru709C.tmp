@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://duq71aqldxojb" path="res://scenes/player.tscn" id="2_jstao"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="2_ky8o0"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/convex_block_data.gd" id="3_tlphc"]
-[ext_resource type="PackedScene" uid="uid://cf8raw2n4h2rq" path="res://scenes/UI/hud.tscn" id="4_6typb"]
+[ext_resource type="PackedScene" uid="uid://bbq4e3ylw071u" path="res://scenes/UI/inventory_ui.tscn" id="4_rb2wy"]
 
 [sub_resource type="Resource" id="Resource_f2jxi"]
 script = ExtResource("3_tlphc")
@@ -456,4 +456,4 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="Node3D2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.444102, 0, 0.470277)
 
-[node name="Hud" parent="." instance=ExtResource("4_6typb")]
+[node name="InventoryUI" parent="." instance=ExtResource("4_rb2wy")]

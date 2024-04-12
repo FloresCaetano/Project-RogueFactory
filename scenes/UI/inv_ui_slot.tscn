@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://by42k7fv46sbi"]
+
+[ext_resource type="Texture2D" uid="uid://bbge6dqlr38mi" path="res://assets/GUI/inventory/Inventory Cell.png" id="1_42vwo"]
+[ext_resource type="Script" path="res://scenes/UI/inv_ui_slot.gd" id="1_ux322"]
+
+[node name="InvUiSlot" type="Panel" groups=["slot"]]
+process_priority = -10
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_force_pass_scroll_events = false
+script = ExtResource("1_ux322")
+
+[node name="SlotSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_42vwo")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ItemSprite" type="Sprite2D" parent="CenterContainer/Panel"]
+scale = Vector2(0.234375, 0.234375)
+
+[node name="ItemAmmount" type="Label" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 17.0
+offset_bottom = 21.0
+text = "99"
+horizontal_alignment = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://x3h4j5306sjh"
-path="res://.godot/imported/Inventory_3D.glb-2e5a20649ed2e9173fbbf1ba15a7326b.scn"
+uid="uid://c42hljcgiviby"
+path="res://.godot/imported/PlayerAnim.gltf-ec368262b0afe09fe92ef32d732fd119.scn"
 
 [deps]
 
-source_file="res://assets/GUI/Inventory_3D.glb"
-dest_files=["res://.godot/imported/Inventory_3D.glb-2e5a20649ed2e9173fbbf1ba15a7326b.scn"]
+source_file="res://assets/player/PlayerAnim.gltf"
+dest_files=["res://.godot/imported/PlayerAnim.gltf-ec368262b0afe09fe92ef32d732fd119.scn"]
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Scene Root"
+nodes/root_type=""
+nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
@@ -22,6 +22,7 @@ meshes/generate_lods=true
 meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
@@ -29,4 +30,5 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={}
+gltf/naming_version=1
 gltf/embedded_image_handling=1

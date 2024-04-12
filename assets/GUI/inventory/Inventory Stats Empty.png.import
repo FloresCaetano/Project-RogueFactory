@@ -2,17 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1pxktg1bb521"
-path="res://.godot/imported/big_tank_0.png-153794a5c979371a5ae96b873f7885e2.ctex"
+uid="uid://deyg6harkboxo"
+path="res://.godot/imported/Inventory Stats Empty.png-6081f2968af05067d1f968db343a593d.ctex"
 metadata={
 "vram_texture": false
 }
-generator_parameters={}
 
 [deps]
 
-source_file="res://assets/Machines/big_tank/big_tank_0.png"
-dest_files=["res://.godot/imported/big_tank_0.png-153794a5c979371a5ae96b873f7885e2.ctex"]
+source_file="res://assets/GUI/inventory/Inventory Stats Empty.png"
+dest_files=["res://.godot/imported/Inventory Stats Empty.png-6081f2968af05067d1f968db343a593d.ctex"]
 
 [params]
 

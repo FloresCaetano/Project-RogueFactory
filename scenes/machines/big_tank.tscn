@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnnyisafvqvc1"]
+
+[ext_resource type="PackedScene" uid="uid://yk8el02fbypt" path="res://assets/Machines/big_tank/big_tank.gltf" id="1_tqo00"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_tqo00")]

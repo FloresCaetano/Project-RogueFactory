@@ -4,7 +4,7 @@ extends Node
 
 #BUILD VARS
 @onready var BuildGrid : GridMap = get_tree().get_nodes_in_group("Build_Grid")[0]
-var construction_name = "medium"
+var construction_name = "medium_machine"
 var construction_type = "machine"
 @onready var construction = load("res://scenes/machines/"+ construction_name +".tscn")
 var preview
