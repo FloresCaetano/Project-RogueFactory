@@ -61,3 +61,14 @@ func check_inventory():
 	else:
 		Player.can_move_camera = true
 		Player.can_move = true
+
+
+func _on_aereo_camera_toggled(toggled_on):
+	var pivote = Player.get_node("Pivote")
+	if toggled_on:
+		var tween_callback : Callable = func(): pivote.max_look_angle = 75.0
+		pivote.max_look_angle = 75.0
+		pivote.tween_interpolate_camera(75.0, 0.5, tween_callback)
+	else:
+		var tween_callback : Callable = func(): pivote.max_look_angle = 50.0
+		pivote.tween_interpolate_camera(50.0, 0.5, tween_callback)

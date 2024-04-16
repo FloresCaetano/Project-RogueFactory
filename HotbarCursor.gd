@@ -5,9 +5,11 @@ extends Control
 @onready var ParentSlot = self.get_parent()
 @onready var Player = get_tree().get_first_node_in_group("player")
 @onready var InteractionHandler = Player.get_node("InteractionHandler")
+@onready var Hotbar = get_tree().get_first_node_in_group("Hotbar")
 var actual_slot = 0
 
-
+func _ready():
+	Hotbar.items_changed.connect(_on_items_changed)
 
 func _input(event):
 	var hotkey = HUD.get_inventory_hotkeys()
@@ -26,6 +28,7 @@ func change_parent(new_parent : Node):
 	ParentSlot.remove_child(self)
 	new_parent.add_child(self)
 	send_slot_data(new_parent)
+	ParentSlot = new_parent
 
 func get_slot_data():
 	return ParentSlot.get_slot_data()
@@ -42,3 +45,5 @@ func send_slot_data(slot):
 	else:
 		Player.emit_signal("build_mode_off")
 	
+func _on_items_changed():
+	send_slot_data(ParentSlot)

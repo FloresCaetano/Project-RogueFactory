@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://duq71aqldxojb"]
+[gd_scene load_steps=13 format=3 uid="uid://duq71aqldxojb"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_h4uls"]
 [ext_resource type="Script" path="res://scripts/pivote.gd" id="4_mcvcc"]
 [ext_resource type="Script" path="res://scripts/mouseRayCast.gd" id="5_2d36i"]
+[ext_resource type="Script" path="res://scripts/PlayerObjectsOccluder.gd" id="5_pcke0"]
 [ext_resource type="Script" path="res://scripts/InteractionHandler.gd" id="6_7ix37"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jlwu2"]
@@ -414,7 +415,7 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 0.99421, 0.107453, 0, -0.107453, 0.99421, -1.49012e-08, 1.61196, -0.174214)
 bones/1/enabled = true
 bones/1/position = Vector3(-1.49012e-08, 1.61196, -0.174214)
-bones/1/rotation = Quaternion(-0.0178138, 0.0293272, -0.00273907, 0.999407)
+bones/1/rotation = Quaternion(-0.0178138, 0.0293271, -0.00273907, 0.999407)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "mixamorig_Spine1"
 bones/2/parent = 1
@@ -470,7 +471,7 @@ bones/9/parent = 8
 bones/9/rest = Transform3D(0.988399, -0.148696, 0.0309325, 0.15188, 0.967682, -0.201304, 3.66941e-07, 0.203667, 0.97904, 8.79169e-06, 3.717, 6.14673e-07)
 bones/9/enabled = true
 bones/9/position = Vector3(8.79169e-06, 3.717, 6.14673e-07)
-bones/9/rotation = Quaternion(0.000519479, -0.154818, 0.150083, 0.976476)
+bones/9/rotation = Quaternion(0.000519478, -0.154818, 0.150083, 0.976476)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "mixamorig_LeftHandIndex1"
 bones/10/parent = 9
@@ -498,7 +499,7 @@ bones/13/parent = 3
 bones/13/rest = Transform3D(-0.0316199, -0.959348, 0.280449, 0.000764757, -0.280612, -0.959821, 0.9995, -0.0301349, 0.0096066, -1.54797, 1.96207, -0.0504926)
 bones/13/enabled = true
 bones/13/position = Vector3(-1.54796, 1.96208, -0.0504715)
-bones/13/rotation = Quaternion(0.601435, -0.394443, 0.555517, 0.417243)
+bones/13/rotation = Quaternion(0.601435, -0.394443, 0.555517, 0.417242)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "mixamorig_RightArm"
 bones/14/parent = 13
@@ -512,7 +513,7 @@ bones/15/parent = 14
 bones/15/rest = Transform3D(0.997352, 0.0727124, 0.00113921, -0.0727214, 0.99723, 0.0156224, -1.09139e-07, -0.0156639, 0.999877, 9.26852e-06, 4.3622, -1.66446e-05)
 bones/15/enabled = true
 bones/15/position = Vector3(4.76554e-07, 4.3622, -1.55757e-06)
-bones/15/rotation = Quaternion(0.0745112, 0.0680615, -0.641189, 0.760718)
+bones/15/rotation = Quaternion(0.0745111, 0.0680615, -0.641189, 0.760718)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "mixamorig_RightHand"
 bones/16/parent = 15
@@ -525,7 +526,7 @@ bones/17/name = "mixamorig_RightHandIndex1"
 bones/17/parent = 16
 bones/17/rest = Transform3D(0.235603, -0.87795, -0.416767, 3.57628e-07, 0.428839, -0.903381, 0.971849, 0.212839, 0.101036, -1.08778e-05, 2.28666, 6.85826e-06)
 bones/17/enabled = true
-bones/17/position = Vector3(-3.80513e-07, 2.28665, 2.03334e-07)
+bones/17/position = Vector3(-3.80514e-07, 2.28665, 2.03334e-07)
 bones/17/rotation = Quaternion(0.396353, -0.544951, -0.222872, 0.704458)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "mixamorig_RightHandIndex2"
@@ -604,12 +605,13 @@ mesh = SubResource("ArrayMesh_fmevx")
 skin = SubResource("Skin_vqe54")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NAUT"]
+process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_coixv")
 }
 
 [node name="Pivote" type="Node3D" parent="."]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0.0719411, 0)
+transform = Transform3D(1.4, 0, 0, 0, 0.899903, -1.07246, 0, 1.07246, 0.899903, 0, 0, 0)
 script = ExtResource("4_mcvcc")
 
 [node name="Camera3D" type="Camera3D" parent="Pivote"]
@@ -628,25 +630,27 @@ shape = SubResource("CapsuleShape3D_c3ax6")
 [node name="InteractionHandler" type="Node" parent="."]
 script = ExtResource("6_7ix37")
 
+[node name="PlayerObjectsOccluder" type="Node3D" parent="."]
+script = ExtResource("5_pcke0")
+
+[node name="RayCast3D" type="RayCast3D" parent="PlayerObjectsOccluder"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.92611, -0.387792)
+target_position = Vector3(0, -3, 0)
+collision_mask = 2
+hit_back_faces = false
+
 [node name="Label" type="Label" parent="."]
-offset_left = 5.0
-offset_top = 476.0
-offset_right = 355.0
-offset_bottom = 552.0
+offset_left = 614.0
+offset_top = 471.0
+offset_right = 964.0
+offset_bottom = 547.0
 
-[node name="RayNormal" type="Label" parent="."]
-offset_left = 1.0
-offset_top = 104.0
-offset_right = 351.0
-offset_bottom = 131.0
-text = "asdasd"
-
-[node name="RayPos" type="Label" parent="."]
-offset_left = 2.0
-offset_top = 81.0
-offset_right = 352.0
-offset_bottom = 157.0
-text = "asdasd"
+[node name="Label2" type="Label" parent="."]
+offset_left = 771.0
+offset_top = 9.0
+offset_right = 953.0
+offset_bottom = 54.0
+autowrap_mode = 2
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1

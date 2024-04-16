@@ -14,5 +14,5 @@ func calc_3D_interactions(mask):
 	ray_params.collision_mask = mask
 	ray_params.hit_back_faces = false
 	ray_params.hit_from_inside = false
-	var ray : = get_world_3d().direct_space_state.intersect_ray(ray_params)
+	var ray = get_world_3d().direct_space_state.intersect_ray(ray_params)
 	return ray

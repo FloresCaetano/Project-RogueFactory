@@ -21,8 +21,20 @@ custom_minimum_size = Vector2(960, 540)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-split_offset = -225
+split_offset = 100
 dragger_visibility = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VSplitContainer2"]
+custom_minimum_size = Vector2(930, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="AereoCamera" type="Button" parent="VSplitContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+text = "Aereo Camera"
 
 [node name="VSplitContainer" type="VSplitContainer" parent="VSplitContainer2"]
 layout_mode = 2
@@ -223,3 +235,5 @@ layout_mode = 2
 
 [node name="InvUiSlot9" parent="VSplitContainer2/VSplitContainer/CenterContainer2/Hotbar/NinePatchRect/GridContainer" instance=ExtResource("4_n8ot2")]
 layout_mode = 2
+
+[connection signal="toggled" from="VSplitContainer2/HBoxContainer/AereoCamera" to="." method="_on_aereo_camera_toggled"]

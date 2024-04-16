@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://c74bq6ifax8ug"]
+
+[ext_resource type="Script" path="res://scripts/machines/wall.gd" id="1_q0okc"]
+[ext_resource type="PackedScene" uid="uid://cej0lfsrwhpuy" path="res://scenes/collider_check.tscn" id="2_5brgo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_if1xe"]
+size = Vector3(1, 5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_psgfq"]
+size = Vector3(1, 5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r7dj5"]
+size = Vector3(0.9, 4.9, 0.9)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_67dtu"]
+size = Vector3(1, 5, 1)
+
+[node name="Wall" type="StaticBody3D" groups=["floor", "occludeable"]]
+collision_layer = 512
+collision_mask = 513
+script = ExtResource("1_q0okc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_if1xe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+layers = 2
+mesh = SubResource("BoxMesh_psgfq")
+
+[node name="ColliderCheck" parent="." instance=ExtResource("2_5brgo")]
+
+[node name="CollisionShape3D" parent="ColliderCheck" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_r7dj5")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+occluder = SubResource("BoxOccluder3D_67dtu")
+
+[editable path="ColliderCheck"]

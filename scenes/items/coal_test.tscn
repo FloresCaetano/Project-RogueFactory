@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://k4hthj57hbmy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l16j6"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_jh71t"]
+radial_steps = 15
+
+[node name="CoalTest" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+collision_layer = 2
+collision_mask = 3
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.78626e-10, -0.00637421)
+shape = SubResource("BoxShape3D_l16j6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00597024, 0.000971794, -0.0120774)
+mesh = SubResource("TubeTrailMesh_jh71t")

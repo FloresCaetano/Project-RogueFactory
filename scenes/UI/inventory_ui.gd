@@ -10,6 +10,7 @@ var ItemContainer : CenterContainer
 var item_on_hand = false
 var is_open = true
 
+signal items_changed
 
 func _ready():
 	make_unique()
@@ -28,6 +29,7 @@ func check_free_slot():
 func update_slots():
 	for i in range(items.size()):
 		Slots[i].update(items[i])
+		emit_signal("items_changed")
 
 
 func _process(_delta):
@@ -49,11 +51,13 @@ func _process(_delta):
 			open()
 
 func open():
+	Player.desactivate()
 	HUD.inventories_on_screen.append(self)
 	visible = true
 	is_open = true
 
 func close():
+	Player.activate()
 	HUD.inventories_on_screen.erase(self)
 	visible = false
 	is_open = false

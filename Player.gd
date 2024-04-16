@@ -97,25 +97,32 @@ func jump():
 
 func get_input():
 	var input = Vector3()
-	if Input.is_action_pressed("W"):
-		input.z += 1
-	if Input.is_action_pressed("S"):
-		input.z -= 1
-	if Input.is_action_pressed("A"):
-		input.x += 1
-	if Input.is_action_pressed("D"):
-		input.x -= 1
-	if Input.is_action_pressed("Space"):
-		input.y += 1
-	if Input.is_action_pressed("Shift"):
-		input.y -= 1
+	if can_move:
+		if Input.is_action_pressed("W"):
+			input.z += 1
+		if Input.is_action_pressed("S"):
+			input.z -= 1
+		if Input.is_action_pressed("A"):
+			input.x += 1
+		if Input.is_action_pressed("D"):
+			input.x -= 1
+		if Input.is_action_pressed("Space"):
+			input.y += 1
+		if Input.is_action_pressed("Shift"):
+			input.y -= 1
 	return input
-
-func debug():
-	if Input.is_action_pressed("Tab"):
-		gravity = 0
-	else:
-		gravity = 15
 
 func _on_coyote_time_timeout():
 	can_jump = false
+
+func desactivate():
+	can_move = false
+	can_move_camera = false
+	if can_build:
+		build_mode_off.emit()
+		build_mode_on.emit()
+
+func activate():
+	can_move = true
+	can_move_camera = true
+
