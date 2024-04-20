@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://d0557qgxupig3"]
+
+[ext_resource type="Script" path="res://inventory/Invetory_Item.gd" id="1_4hn17"]
+[ext_resource type="Texture2D" uid="uid://bb33y7ko71tyo" path="res://assets/items/icons/Icon_StraightBelt.png" id="2_51dru"]
+
+[resource]
+script = ExtResource("1_4hn17")
+texture = ExtResource("2_51dru")
+name = "Straight Belt"
+ammount = 1
+max_stack = 50
+description = ""
+tag = "straight_belt"
+need_snap = false
+type = "build"

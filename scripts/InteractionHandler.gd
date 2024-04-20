@@ -5,12 +5,11 @@ extends Node
 #BUILD VARS
 @onready var BuildGrid : GridMap = get_tree().get_nodes_in_group("Build_Grid")[0]
 var construction_name : String
-var construction_type : String
 @onready var construction : PackedScene 
-var preview : StaticBody3D
+var preview : RigidBody3D
 var global_build_rotation = Vector3.ZERO
-var can_build : bool
 var build_position : Vector3 = Vector3.ZERO
+var can_build : bool
 var valid_material = load("res://materials/valid_build.tres")
 var invalid_material = load("res://materials/invalid_build.tres")
 
@@ -20,48 +19,34 @@ func _physics_process(_delta):
 
 func build_machines():
 	var interaction_ray = MouseRayCast.calc_3D_interactions(0b010)
+	var build_behavior : Dictionary
 	if interaction_ray:
-		can_build = false
-		build_position = interaction_ray.position
+		build_behavior = preview.check_behavior(interaction_ray)
+		if build_behavior.has("can_build"):
+			build_position = build_behavior.build_position
+			can_build = build_behavior.can_build
+		set_material(invalid_material)
+		var grid_build_coords = BuildGrid.local_to_map(build_position)
+		build_position = BuildGrid.map_to_local(grid_build_coords)
 		update_preview(build_position)
-		if preview.get_node("MeshInstance3D").material_overlay != invalid_material:
-			preview.get_node("MeshInstance3D").material_overlay = invalid_material
-		if construction_type == "floor":
-			if interaction_ray.collider.is_in_group("floor") and interaction_ray.normal.y == 0:
-				build_position = interaction_ray.collider.global_position + interaction_ray.normal
-				can_build = true
-		elif construction_type == "up_conveyor":
-			build_position = interaction_ray.position + (interaction_ray.normal / Vector3(2, 2, 2))
-		elif interaction_ray.normal.y == 1: #Check if the ray is looking A UPPER face
-			build_position = interaction_ray.position
-			build_position.y = 7
-			can_build = true
-		else:
-			pass
+		if preview.is_colliding:
+			can_build = false
 	if can_build == true:
-		build(false)
+		build(build_behavior)
 
-func build(snap_requiered):
-	var grid_build_coords = BuildGrid.local_to_map(build_position)
-	var global_build_coords = BuildGrid.map_to_local(grid_build_coords)
-	update_preview(global_build_coords)
-	if preview.is_colliding:
-		return
-	if preview.get_node("MeshInstance3D").material_overlay != valid_material:
-		preview.get_node("MeshInstance3D").material_overlay = valid_material
-	if Input.is_action_just_pressed("RotateRight"):
-		global_build_rotation.y += deg_to_rad(90.0)
-	if Input.is_action_just_pressed("RotateLeft"):
-		global_build_rotation.y -= deg_to_rad(90.0)
-	
-	if not snap_requiered && Input.is_action_just_released("leftClick"):
+func build(build_behavior):
+	set_material(valid_material)
+	if Input.is_action_just_released("leftClick"):
 		var placed_constrution = construction.instantiate()
 		Player.add_sibling(placed_constrution)
-		placed_constrution.global_position = global_build_coords
+		placed_constrution.global_transform.origin = build_position
 		placed_constrution.rotation = global_build_rotation
 		placed_constrution.collision_layer = 0b11
 		$"../Pivote/Camera3D".force_update_transform()
 		placed_constrution.get_node("ColliderCheck").queue_free()
+		reset_material(placed_constrution)
+		if build_behavior.has("callable"):
+			build_behavior.callable.call(placed_constrution)
 		return placed_constrution
 
 
@@ -74,7 +59,7 @@ func delete_preview():
 
 func update_preview(global_build_coords):
 	preview.global_position = global_build_coords
-	preview.rotation = global_build_rotation
+	global_build_rotation = preview.rotation
 
 func _on_player_build_mode_on():
 	construction = load("res://scenes/machines/"+ construction_name +".tscn")
@@ -85,3 +70,15 @@ func _on_player_build_mode_off():
 	if Player.can_build == true:
 		delete_preview()
 		Player.can_build = false
+
+func set_material(material):
+	var preview_nodes = preview.get_children(true)
+	for node in preview_nodes:
+		if node is MeshInstance3D:
+			if node.material_overlay != material:
+				node.material_overlay = material
+func reset_material(placed_build):
+	var build_nodes = placed_build.get_children(true)
+	for node in build_nodes:
+		if node is MeshInstance3D:
+			node.material_overlay = null

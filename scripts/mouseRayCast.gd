@@ -6,7 +6,7 @@ const build_distance = 10
 
 func calc_3D_interactions(mask):
 	var mouse_pos = get_viewport().get_mouse_position()
-	var origin = camera.project_ray_origin(mouse_pos)
+	var origin = camera.project_ray_origin(mouse_pos + Vector2(10, 10))
 	var end = camera.project_position(mouse_pos, build_distance)
 	var ray_params = PhysicsRayQueryParameters3D.create(origin, end)
 	ray_params.collide_with_areas = true

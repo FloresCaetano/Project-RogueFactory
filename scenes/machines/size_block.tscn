@@ -3,26 +3,32 @@
 [ext_resource type="Script" path="res://scripts/machines/size_block.gd" id="1_tm4if"]
 [ext_resource type="PackedScene" uid="uid://cej0lfsrwhpuy" path="res://scenes/collider_check.tscn" id="2_tdpro"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_oqnre"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_m70cb"]
+margin = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_snqjn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_it3ua"]
+margin = 0.1
 size = Vector3(0.9, 0.9, 0.9)
 
-[node name="StaticBody3D" type="StaticBody3D" groups=["floor"]]
+[node name="StaticBody3D" type="RigidBody3D" groups=["floor"]]
+disable_mode = 2
 collision_layer = 512
 collision_mask = 513
 script = ExtResource("1_tm4if")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_oqnre")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_m70cb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 layers = 2
 mesh = SubResource("BoxMesh_snqjn")
 
 [node name="ColliderCheck" parent="." instance=ExtResource("2_tdpro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="CollisionShape3D" parent="ColliderCheck" index="0"]
 shape = SubResource("BoxShape3D_it3ua")

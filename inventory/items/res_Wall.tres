@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bqudsv7kqtqbn"]
+
+[ext_resource type="Script" path="res://inventory/Invetory_Item.gd" id="1_dg7s7"]
+[ext_resource type="Texture2D" uid="uid://d1lmr41n5w6tv" path="res://icon.svg" id="2_3hocp"]
+
+[resource]
+script = ExtResource("1_dg7s7")
+texture = ExtResource("2_3hocp")
+name = "Big Tank"
+ammount = 17
+max_stack = 30
+description = "Tanque de gases grande"
+tag = "wall"
+need_snap = false
+type = "build"

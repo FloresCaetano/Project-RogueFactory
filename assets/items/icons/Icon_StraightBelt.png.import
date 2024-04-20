@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0jkj5qyw80if"
-path="res://.godot/imported/small_gasCollector_icon.png-316a62650dea6b21cc0b3ad043f0a5da.ctex"
+uid="uid://bb33y7ko71tyo"
+path="res://.godot/imported/Icon_StraightBelt.png-0276a43483eaf6eeabe769387db13d02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/machines/small_gasCollector_icon.png"
-dest_files=["res://.godot/imported/small_gasCollector_icon.png-316a62650dea6b21cc0b3ad043f0a5da.ctex"]
+source_file="res://assets/items/icons/Icon_StraightBelt.png"
+dest_files=["res://.godot/imported/Icon_StraightBelt.png-0276a43483eaf6eeabe769387db13d02.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

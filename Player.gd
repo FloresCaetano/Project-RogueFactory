@@ -126,3 +126,13 @@ func activate():
 	can_move = true
 	can_move_camera = true
 
+func get_facing():
+	if Pivote.rotation > deg_to_rad(0) and Pivote.rotation < deg_to_rad(90):
+		return "N"
+	elif Pivote.rotation > deg_to_rad(90) and Pivote.rotation < deg_to_rad(180):
+		return "E"
+	elif Pivote.rotation > deg_to_rad(180) and Pivote.rotation < deg_to_rad(270):
+		return "S"
+	elif Pivote.rotation > deg_to_rad(270):
+		return "W"
+	

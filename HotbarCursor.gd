@@ -36,11 +36,10 @@ func get_slot_data():
 func send_slot_data(slot):
 	var slot_data = slot.get_slot_data()
 	var item : Item = slot_data.item
-	if item is Item and (item.type == "floor" or item.type == "machine"):
+	if item is Item and (item.type == "build"):
 		if Player.can_build == true:
 			Player.emit_signal("build_mode_off")
 		InteractionHandler.construction_name = item.tag
-		InteractionHandler.construction_type = item.type
 		Player.emit_signal("build_mode_on")
 	else:
 		Player.emit_signal("build_mode_off")

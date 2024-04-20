@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doeyrbdqfnk1m"
-path.s3tc="res://.godot/imported/medium_gasCollector_icon.png-06170c43710bf4031e95d63dfb602669.s3tc.ctex"
+uid="uid://b0r1rnvkj4f48"
+path="res://.godot/imported/Icon_CurveBelt.png-096f97c362b61cea8c010f033efa409c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/machines/medium_gasCollector_icon.png"
-dest_files=["res://.godot/imported/medium_gasCollector_icon.png-06170c43710bf4031e95d63dfb602669.s3tc.ctex"]
+source_file="res://assets/items/icons/Icon_CurveBelt.png"
+dest_files=["res://.godot/imported/Icon_CurveBelt.png-096f97c362b61cea8c010f033efa409c.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

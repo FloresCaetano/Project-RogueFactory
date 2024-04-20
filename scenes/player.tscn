@@ -611,7 +611,7 @@ libraries = {
 }
 
 [node name="Pivote" type="Node3D" parent="."]
-transform = Transform3D(1.4, 0, 0, 0, 0.899903, -1.07246, 0, 1.07246, 0.899903, 0, 0, 0)
+transform = Transform3D(1.6, 0, 0, 0, 1.02846, -1.22567, 0, 1.22567, 1.02846, 0, 0, 0)
 script = ExtResource("4_mcvcc")
 
 [node name="Camera3D" type="Camera3D" parent="Pivote"]

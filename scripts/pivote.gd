@@ -20,7 +20,7 @@ func _process(delta) -> void:
 		var rot = Vector3(mouse_delta.y, mouse_delta.x, 0) * look_sensitivity * delta
 		rotation_degrees.y -= rot.y
 		mouse_delta = Vector2()
-		camera_zoom()
+		#camera_zoom()
 
 func camera_zoom():
 	const zoom_transition = 0.3
