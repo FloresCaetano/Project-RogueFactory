@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cf8raw2n4h2rq"]
+[gd_scene load_steps=10 format=3 uid="uid://cf8raw2n4h2rq"]
 
 [ext_resource type="Script" path="res://scenes/UI/hud.gd" id="1_k20gc"]
 [ext_resource type="Script" path="res://scenes/UI/inventory_ui.gd" id="2_jdgrm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bqudsv7kqtqbn" path="res://inventory/items/res_Wall.tres" id="3_nh8cx"]
 [ext_resource type="Resource" uid="uid://cmdlko5n0h11q" path="res://inventory/items/res_Floor.tres" id="4_be63k"]
 [ext_resource type="PackedScene" uid="uid://by42k7fv46sbi" path="res://scenes/UI/inv_ui_slot.tscn" id="4_n8ot2"]
+[ext_resource type="Resource" uid="uid://d3f10qfe1vbye" path="res://inventory/items/res_SmallOven.tres" id="6_2oxck"]
 [ext_resource type="Resource" uid="uid://d0557qgxupig3" path="res://inventory/items/res_StraightBelt.tres" id="6_mll3x"]
 [ext_resource type="PackedScene" uid="uid://cc7m5s5xkwn5x" path="res://scenes/UI/hotbar_cursor.tscn" id="7_q236m"]
 
@@ -15,6 +16,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
+mouse_filter = 2
 script = ExtResource("1_k20gc")
 
 [node name="VSplitContainer2" type="VSplitContainer" parent="."]
@@ -22,6 +24,7 @@ custom_minimum_size = Vector2(960, 540)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 split_offset = 100
 dragger_visibility = 2
 
@@ -39,6 +42,7 @@ text = "Aereo Camera"
 
 [node name="VSplitContainer" type="VSplitContainer" parent="VSplitContainer2"]
 layout_mode = 2
+mouse_filter = 2
 split_offset = -35
 dragger_visibility = 1
 
@@ -46,12 +50,12 @@ dragger_visibility = 1
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="InventoryUI" type="Control" parent="VSplitContainer2/VSplitContainer/CenterContainer"]
+[node name="InventoryUI" type="Control" parent="VSplitContainer2/VSplitContainer/CenterContainer" groups=["MainInventory"]]
 custom_minimum_size = Vector2(331, 114)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("2_jdgrm")
-items = Array[Resource("res://inventory/Invetory_Item.gd")]([null, ExtResource("4_be63k"), ExtResource("6_mll3x"), ExtResource("3_nh8cx"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[Resource("res://inventory/Invetory_Item.gd")]([null, ExtResource("4_be63k"), ExtResource("6_mll3x"), ExtResource("3_nh8cx"), ExtResource("6_2oxck"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 
 [node name="NinePatchRect" type="NinePatchRect" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI"]
 layout_mode = 0

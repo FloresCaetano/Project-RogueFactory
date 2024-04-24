@@ -17,8 +17,8 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta) -> void:
 	if player.can_move_camera:
-		var rot = Vector3(mouse_delta.y, mouse_delta.x, 0) * look_sensitivity * delta
-		rotation_degrees.y -= rot.y
+		var rot = Vector3(mouse_delta.y, mouse_delta.x, 0) * look_sensitivity 
+		rotation_degrees.y -= rot.y * delta
 		mouse_delta = Vector2()
 		#camera_zoom()
 

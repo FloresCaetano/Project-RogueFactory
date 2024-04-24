@@ -2,10 +2,11 @@ extends Node
 @onready var Player = $".."
 @onready var MouseRayCast = $"../Pivote/Camera3D/MouseRayCast"
 @onready var Occluder : OccluderInstance3D =  $"../OccluderInstance3D"
+@onready var HUD = get_tree().get_first_node_in_group("Hud")
 #BUILD VARS
 @onready var BuildGrid : GridMap = get_tree().get_nodes_in_group("Build_Grid")[0]
 var construction_name : String
-@onready var construction : PackedScene 
+@onready var construction : PackedScene
 var preview : RigidBody3D
 var global_build_rotation = Vector3.ZERO
 var build_position : Vector3 = Vector3.ZERO
@@ -16,6 +17,16 @@ var invalid_material = load("res://materials/invalid_build.tres")
 func _physics_process(_delta):
 	if Player.can_build:
 		build_machines()
+	else:
+		interact()
+
+func interact():
+	var interaction_ray = MouseRayCast.calc_3D_interactions(0b010)
+	if interaction_ray:
+		var collider = interaction_ray.collider
+		if collider.is_in_group("interactable"):
+			if HUD.inventories_on_screen.size() < 2 and Input.is_action_just_pressed("E"):
+				collider.mouse_interaction()
 
 func build_machines():
 	var interaction_ray = MouseRayCast.calc_3D_interactions(0b010)
@@ -37,7 +48,7 @@ func build_machines():
 func build(build_behavior):
 	set_material(valid_material)
 	if Input.is_action_just_released("leftClick"):
-		var placed_constrution = construction.instantiate()
+		var placed_constrution = preview.duplicate()
 		Player.add_sibling(placed_constrution)
 		placed_constrution.global_transform.origin = build_position
 		placed_constrution.rotation = global_build_rotation
@@ -46,7 +57,13 @@ func build(build_behavior):
 		placed_constrution.get_node("ColliderCheck").queue_free()
 		reset_material(placed_constrution)
 		if build_behavior.has("callable"):
-			build_behavior.callable.call(placed_constrution)
+			var timer = Timer.new()
+			timer.wait_time = 0.1  # Duración del temporizador en segundos
+			timer.one_shot = true  # Configura el temporizador para que se ejecute solo una vez
+			timer.connect("timeout", func _on_timer_timeout(): placed_constrution.update_connections(placed_constrution, preview))
+			add_child(timer)
+			timer.start()
+			
 		return placed_constrution
 
 

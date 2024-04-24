@@ -44,7 +44,7 @@ func _process(_delta):
 			item_on_hand = false
 			update_slots()
 
-	if Input.is_action_just_pressed(hide_key) && can_hide:
+	if Input.is_action_just_pressed(hide_key) and can_hide and HUD.inventories_on_screen.size() <= 1:
 		if is_open:
 			close()
 		else:
@@ -62,12 +62,13 @@ func close():
 	visible = false
 	is_open = false
 
-func set_item(item_index, item: Item):
+func set_item(item_index, item: Item, ammount):
 	var previous_item : Item = items[item_index]
-	if previous_item.name == item.name:
-		item.ammount += previous_item.ammount
+	if previous_item is Item and previous_item.name == item.name:
+		previous_item.ammount += ammount
 	else:
 		items[item_index] = item.duplicate()
+		items[item_index].ammount = ammount
 	update_slots()
 	return previous_item
 

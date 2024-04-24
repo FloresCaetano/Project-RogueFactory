@@ -1,4 +1,4 @@
 extends RigidBody3D
 
-var is_activated = false
+var activated = false
 var is_colliding = false

@@ -4,6 +4,8 @@ extends Control
 @onready var Player = get_tree().get_first_node_in_group("player")
 @onready var Hotbar = get_tree().get_first_node_in_group("Hotbar")
 func _process(_delta):
+	if Input.is_action_just_released("Escape") and inventories_on_screen != []:
+		inventories_on_screen[-1].close()
 	if Player.drag_target_data is Dictionary and Player.drag_target_data.has("item"):
 		num_shortcuts()
 

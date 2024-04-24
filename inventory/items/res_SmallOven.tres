@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://d3f10qfe1vbye"]
+
+[ext_resource type="Script" path="res://inventory/Invetory_Item.gd" id="1_7oipf"]
+[ext_resource type="Texture2D" uid="uid://dnhdj27dre400" path="res://assets/items/icons/Icon_SmallOven.png" id="2_g633x"]
+
+[resource]
+script = ExtResource("1_7oipf")
+texture = ExtResource("2_g633x")
+name = "Small Oven"
+ammount = 1
+max_stack = 50
+description = ""
+tag = "small_oven"
+need_snap = false
+type = "build"

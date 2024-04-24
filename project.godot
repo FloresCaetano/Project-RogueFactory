@@ -13,12 +13,12 @@ config_version=5
 config/name="Project-RogueFactory"
 run/main_scene="res://scenes/TEST.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
 GLOBAL="res://scripts/GLOBAL.gd"
-CyclopsAutoload="*res://addons/cyclops_level_builder/cyclops_global_scene.tscn"
 
 [display]
 
@@ -29,10 +29,6 @@ window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://assets/cursor/normal_cursor.png"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/cyclops_level_builder/plugin.cfg")
 
 [filesystem]
 
@@ -189,6 +185,11 @@ R={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"echo":false,"script":null)
 ]
 }
+E={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -201,7 +202,6 @@ R={
 
 [physics]
 
-3d/physics_engine="JoltPhysics3D"
 jolt_3d/collisions/areas_detect_static_bodies=true
 jolt_3d/collisions/report_all_kinematic_contacts=true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1v02qqpiy2bb"]
+[gd_scene load_steps=8 format=3 uid="uid://tblr0pvhyoum"]
 
 [ext_resource type="Script" path="res://scripts/machines/curve_belt.gd" id="1_kem54"]
 [ext_resource type="Script" path="res://scripts/collider_check.gd" id="2_17jor"]
