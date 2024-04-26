@@ -166,6 +166,7 @@ debug_shape_custom_color = Color(0.576471, 0, 0, 1)
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51673, 0)
+visible = false
 billboard = 1
 
 [connection signal="body_entered" from="ColliderCheck" to="ColliderCheck" method="_on_body_entered"]

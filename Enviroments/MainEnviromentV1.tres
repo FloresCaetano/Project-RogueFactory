@@ -1,0 +1,24 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://gnof6im5r4ve"]
+
+[ext_resource type="Texture2D" uid="uid://bsf1s6wd8p684" path="res://assets/skyes/panorama6.jpg" id="1_2c2yv"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0orch"]
+panorama = ExtResource("1_2c2yv")
+
+[sub_resource type="Sky" id="Sky_mnw35"]
+sky_material = SubResource("PanoramaSkyMaterial_0orch")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_mnw35")
+ambient_light_source = 3
+ambient_light_color = Color(0.00419652, 0, 0.81209, 1)
+reflected_light_source = 2
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_normalized = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.0137286, 0.0212171, 0.157886, 1)

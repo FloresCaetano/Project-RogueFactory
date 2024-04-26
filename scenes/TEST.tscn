@@ -1,21 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://di56gyaffvbyg"]
+[gd_scene load_steps=6 format=3 uid="uid://di56gyaffvbyg"]
 
+[ext_resource type="Environment" uid="uid://gnof6im5r4ve" path="res://Enviroments/MainEnviromentV1.tres" id="1_jssyc"]
 [ext_resource type="PackedScene" uid="uid://duq71aqldxojb" path="res://scenes/player.tscn" id="1_nci2w"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i5qhu"]
-
-[sub_resource type="Sky" id="Sky_6fk3c"]
-sky_material = SubResource("ProceduralSkyMaterial_i5qhu")
-
-[sub_resource type="Environment" id="Environment_1ke8m"]
-sky = SubResource("Sky_6fk3c")
-ambient_light_source = 3
-ambient_light_energy = 5.0
-fog_light_color = Color(0.839216, 0.65098, 0.541176, 1)
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.06
-volumetric_fog_albedo = Color(0.12549, 0.12549, 0.168627, 1)
-volumetric_fog_ambient_inject = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sryer"]
 shading_mode = 0
@@ -36,7 +22,7 @@ size = Vector2(0.05, 0.05)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.359862, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_1ke8m")
+environment = ExtResource("1_jssyc")
 
 [node name="Player" parent="." instance=ExtResource("1_nci2w")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.237186, 0.429718, -0.104526)

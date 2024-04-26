@@ -13,12 +13,11 @@ config_version=5
 config/name="Project-RogueFactory"
 run/main_scene="res://scenes/TEST.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
-GLOBAL="res://scripts/GLOBAL.gd"
+GLOBAL="*res://scripts/GLOBAL.gd"
 
 [display]
 
@@ -29,6 +28,14 @@ window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://assets/cursor/normal_cursor.png"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "green",
+"res://scenes/": "purple",
+"res://scripts/": "gray"
+}
 
 [filesystem]
 
@@ -211,6 +218,7 @@ occlusion_culling/bvh_build_quality=1
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method.mobile="gl_compatibility"
 occlusion_culling/use_occlusion_culling=true
+lights_and_shadows/positional_shadow/atlas_size=8192
 scaling_3d/stretch/aspect="expand"
 scaling_3d/stretch/mode="viewport"
 scaling_3d/size/mode=0

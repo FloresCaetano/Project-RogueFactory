@@ -16,8 +16,9 @@ func check_connections():
 	var accepted_connections = PackedStringArray(["front-back", "right-left", "back-front", "left-right"])
 	if raycasts[0].is_colliding():
 		if raycasts[0].get_collider().is_in_group("conveyor"):
-			if raycasts[0].get_collider().raycasts[0].get_collider() != self:
-				connected_belts[0] = raycasts[0].get_collider()
+			if accepted_connections.has(raycasts[0].get_collider().side.split("-")[0] + "-" + side.split("-")[1]):
+				if raycasts[0].get_collider().raycasts[0].get_collider() != self:
+					connected_belts[0] = raycasts[0].get_collider()
 	else:
 		connected_belts[0] = null
 	if raycasts[1].is_colliding():
@@ -32,9 +33,14 @@ func check_behavior(interaction_ray : Dictionary) -> Dictionary:
 	check_connections()
 	rotate_build()
 	var build_position = interaction_ray.collider.global_position + (interaction_ray.normal)
-	return {"can_build" : true,
-			"build_position" : build_position,
-			"callable" : true}
+	if interaction_ray.collider.is_in_group("buildable"):
+		return {"can_build" : true,
+				"build_position" : build_position,
+				"draggable" : true,
+				"callable" : true}
+	else:
+		return {"can_build" : false,
+				"build_position" : Vector3(0, 0, 0)}
 
 func rotate_build():
 	if Input.is_action_just_pressed("R"):
@@ -194,7 +200,7 @@ func rotate_build():
 			turn_on(straight_belt)
 			turn_off(curve_belt)
 
-func update_connections(conveyor, preview): 
+func callable(conveyor, preview, handler): 
 	conveyor.side = preview.side
 	conveyor.conveyor_path = preview.conveyor_path
 	conveyor.call("check_connections")

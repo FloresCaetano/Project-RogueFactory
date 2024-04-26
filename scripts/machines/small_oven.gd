@@ -4,7 +4,7 @@ extends "res://scripts/machines/machines.gd"
 @onready var Hud_invetories_container = get_tree().get_first_node_in_group("Hud").get_node("VSplitContainer2/VSplitContainer")
 var connected_belt : RigidBody3D
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	$Label3D.text = "time : " + str(inventory.items[1]) + "  belt : " + str(connected_belt)
 	if $BurningTime.is_stopped() and activated:
 		$BurningTime.start()
@@ -36,6 +36,7 @@ func _on_burning_time_timeout():
 
 func check_behavior(interaction_ray : Dictionary) -> Dictionary:
 	rotate_build()
+	get_tree().get_first_node_in_group("Build_Grid").cell_size = Vector3(2, 2, 2)
 	var build_position = interaction_ray.collider.global_position + (interaction_ray.normal)
 	return {"can_build" : true,
 			"build_position" : build_position,
@@ -46,13 +47,15 @@ func rotate_build():
 		rotation_degrees.y += 90.0
 		
 func mouse_interaction():
+	if get_tree().get_first_node_in_group("Hud").inventories_on_screen.size() < 2 and Input.is_action_just_pressed("E"):
 		if inventory.is_open:
 			get_tree().get_first_node_in_group("MainInventory").close()
 			inventory.close()
 		else:
 			get_tree().get_first_node_in_group("MainInventory").open()
 			inventory.open()
-func update_connections(conveyor, preview): 
+
+func callable(conveyor, _preview, _handler):
 	conveyor.check_connections()
 	if connected_belt is RigidBody3D: #Check if it has a valid build connected
 		conveyor.connected_belt.call("check_connections")

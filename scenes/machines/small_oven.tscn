@@ -217,37 +217,38 @@ size = Vector3(0.939087, 0.930664, 0.863525)
 size = Vector3(0.276382, 0.11377, 0.718262)
 
 [node name="SmallOven" type="RigidBody3D" groups=["interactable", "machine"]]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 0
 freeze = true
 script = ExtResource("1_coc2l")
 
 [node name="pCube10" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.01, 0, 0, 0, -3.57628e-09, -0.01, 0, 0.01, -3.57628e-09, 0, 0, 0)
+transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0)
 mesh = SubResource("ArrayMesh_v3scr")
 skeleton = NodePath("")
 
 [node name="pCube11" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.01, 0, 0, 0, -3.57628e-09, -0.01, 0, 0.01, -3.57628e-09, 0, 0, 0)
+transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0)
 mesh = SubResource("ArrayMesh_p3o28")
 skeleton = NodePath("")
 
 [node name="pCylinder1" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.01, 0, 0, 0, -3.57628e-09, -0.01, 0, 0.01, -3.57628e-09, 0, 0, 0)
+transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0)
 mesh = SubResource("ArrayMesh_1o6n0")
 skeleton = NodePath("")
 
 [node name="pCylinder2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.01, 0, 0, 0, -3.57628e-09, -0.01, 0, 0.01, -3.57628e-09, 0, 0, 0)
+transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0)
 mesh = SubResource("ArrayMesh_i2f04")
 skeleton = NodePath("")
 
 [node name="polySurface1" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.01, 0, 0, 0, -3.57628e-09, -0.01, 0, 0.01, -3.57628e-09, 0, 0, 0)
+transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0)
 mesh = SubResource("ArrayMesh_4p76t")
 skeleton = NodePath("")
 
 [node name="polySurface9" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.01, 0, 0, 0, -3.57628e-09, -0.01, 0, 0.01, -3.57628e-09, 0, 0, 0)
+transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0)
 mesh = SubResource("ArrayMesh_t317n")
 skeleton = NodePath("")
 
@@ -274,7 +275,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00118256, 0.987569, -0.008
 shape = SubResource("BoxShape3D_p8lur")
 
 [node name="Output" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1871, 0)
 target_position = Vector3(0, 0, -1)
 
 [node name="MachineInvetory" type="CenterContainer" parent="."]

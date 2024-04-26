@@ -14,6 +14,17 @@ var can_build : bool
 var valid_material = load("res://materials/valid_build.tres")
 var invalid_material = load("res://materials/invalid_build.tres")
 
+func _ready():
+	for key in GLOBAL.game_data.buildings.keys():
+		var build_data = GLOBAL.game_data.buildings[key]
+		var build : RigidBody3D = load(build_data["path"]).instantiate()
+		Player.add_sibling.call_deferred(build)
+		build.set_global_position.call_deferred(build_data["position"])
+		build.set_rotation.call_deferred(build_data["rotation"])
+		build.set_collision_layer.call_deferred(0b11)
+		build.id = build_data["id"]
+		
+
 func _physics_process(_delta):
 	if Player.can_build:
 		build_machines()
@@ -25,7 +36,6 @@ func interact():
 	if interaction_ray:
 		var collider = interaction_ray.collider
 		if collider.is_in_group("interactable"):
-			if HUD.inventories_on_screen.size() < 2 and Input.is_action_just_pressed("E"):
 				collider.mouse_interaction()
 
 func build_machines():
@@ -43,28 +53,31 @@ func build_machines():
 		if preview.is_colliding:
 			can_build = false
 	if can_build == true:
-		build(build_behavior)
+		set_material(valid_material)
+		if build_behavior.has("draggable") and Input.is_action_pressed("leftClick"):
+			build(build_behavior)
+		elif Input.is_action_just_released("leftClick"):
+			build(build_behavior)
 
 func build(build_behavior):
-	set_material(valid_material)
-	if Input.is_action_just_released("leftClick"):
-		var placed_constrution = preview.duplicate()
-		Player.add_sibling(placed_constrution)
-		placed_constrution.global_transform.origin = build_position
-		placed_constrution.rotation = global_build_rotation
-		placed_constrution.collision_layer = 0b11
-		$"../Pivote/Camera3D".force_update_transform()
-		placed_constrution.get_node("ColliderCheck").queue_free()
-		reset_material(placed_constrution)
-		if build_behavior.has("callable"):
-			var timer = Timer.new()
-			timer.wait_time = 0.1  # Duración del temporizador en segundos
-			timer.one_shot = true  # Configura el temporizador para que se ejecute solo una vez
-			timer.connect("timeout", func _on_timer_timeout(): placed_constrution.update_connections(placed_constrution, preview))
-			add_child(timer)
-			timer.start()
-			
-		return placed_constrution
+	var placed_constrution = preview.duplicate()
+	Player.add_sibling(placed_constrution)
+	placed_constrution.global_transform.origin = build_position
+	placed_constrution.rotation = global_build_rotation
+	placed_constrution.collision_layer = 0b11
+	$"../Pivote/Camera3D".force_update_transform()
+	placed_constrution.get_node("ColliderCheck").queue_free()
+	reset_material(placed_constrution)
+	placed_constrution.write_basic_data("res://scenes/machines/"+ construction_name +".tscn")
+	if build_behavior.has("callable"):
+		var timer = Timer.new()
+		timer.wait_time = 0.1  # Duración del temporizador en segundos
+		timer.one_shot = true  # Configura el temporizador para que se ejecute solo una vez
+		timer.connect("timeout", func _on_timer_timeout(): placed_constrution.callable(placed_constrution, preview, self))
+		add_child(timer)
+		timer.start()
+		
+	return placed_constrution
 
 
 func create_preview():
@@ -73,6 +86,8 @@ func create_preview():
 
 func delete_preview():
 	preview.queue_free()
+	#Reset gridMap just in case a build changes it
+	get_tree().get_first_node_in_group("Build_Grid").cell_size = Vector3(1, 1, 1)
 
 func update_preview(global_build_coords):
 	preview.global_position = global_build_coords
@@ -92,10 +107,10 @@ func set_material(material):
 	var preview_nodes = preview.get_children(true)
 	for node in preview_nodes:
 		if node is MeshInstance3D:
-			if node.material_overlay != material:
-				node.material_overlay = material
+			if node.material_override != material:
+				node.material_override = material
 func reset_material(placed_build):
 	var build_nodes = placed_build.get_children(true)
 	for node in build_nodes:
 		if node is MeshInstance3D:
-			node.material_overlay = null
+			node.material_override = null
