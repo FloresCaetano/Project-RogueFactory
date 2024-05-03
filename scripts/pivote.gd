@@ -1,5 +1,5 @@
 extends Node3D
-var look_sensitivity = 10
+var look_sensitivity = 0.25
 
 var mouse_delta = Vector2()
 var min_look_angle : float = 50.0
@@ -9,18 +9,18 @@ var max_look_angle : float = 50.0
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		if Input.is_action_pressed("rightClick"):
-			mouse_delta = event.relative
+		if Input.is_action_pressed("rightClick") and player.can_move_camera:
+			rotate_y(deg_to_rad(-event.relative.x * look_sensitivity)) 
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func _process(delta) -> void:
-	if player.can_move_camera:
-		var rot = Vector3(mouse_delta.y, mouse_delta.x, 0) * look_sensitivity 
-		rotation_degrees.y -= rot.y * delta
-		mouse_delta = Vector2()
-		#camera_zoom()
+#func _process(delta) -> void:
+	#if player.can_move_camera:
+		#var rot = Vector3(mouse_delta.y, mouse_delta.x, 0) * look_sensitivity 
+		#rotation_degrees.y -= rot.y * delta
+		#mouse_delta = Vector2()
+		##camera_zoom()
 
 func camera_zoom():
 	const zoom_transition = 0.3

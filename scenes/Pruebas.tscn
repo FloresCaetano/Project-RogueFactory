@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://de1yh0gaxpndc"]
+[gd_scene load_steps=6 format=3 uid="uid://de1yh0gaxpndc"]
 
 [ext_resource type="PackedScene" uid="uid://duq71aqldxojb" path="res://scenes/player.tscn" id="2_jstao"]
+[ext_resource type="Environment" uid="uid://gnof6im5r4ve" path="res://Enviroments/MainEnviromentV1.tres" id="3_iltew"]
 [ext_resource type="PackedScene" uid="uid://cf8raw2n4h2rq" path="res://scenes/UI/hud.tscn" id="4_6typb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oqnre"]
@@ -16,6 +17,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.14297, 8.13489, -5.12827)
 transform = Transform3D(-1, -4.20153e-15, -8.74228e-08, -8.74205e-08, -0.00724271, 0.999974, -6.33182e-10, 0.999974, 0.00724271, 3.73784, 13.5174, -7.14523)
 light_energy = 10.0
 light_indirect_energy = 3.0
+light_volumetric_fog_energy = 2.0
 shadow_enabled = true
 shadow_blur = 0.0
 distance_fade_enabled = true
@@ -2727,3 +2729,6 @@ shape = SubResource("BoxShape3D_oqnre")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Blocks2/StaticBody3D112"]
 layers = 2
 mesh = SubResource("BoxMesh_snqjn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_iltew")

@@ -16,7 +16,7 @@ size = Vector3(0.9, 4.9, 0.9)
 [sub_resource type="BoxOccluder3D" id="BoxOccluder3D_67dtu"]
 size = Vector3(1, 5, 1)
 
-[node name="Wall" type="RigidBody3D" groups=["floor", "occludeable"]]
+[node name="Wall" type="RigidBody3D" groups=["floor", "occludeable", "wall"]]
 collision_layer = 512
 collision_mask = 513
 freeze = true

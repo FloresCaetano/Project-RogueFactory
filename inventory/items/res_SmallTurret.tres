@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://1a2jugcrn0rj"]
+
+[ext_resource type="Script" path="res://inventory/Invetory_Item.gd" id="1_xikdf"]
+[ext_resource type="Texture2D" uid="uid://bhb6cu388181t" path="res://assets/items/icons/Icon_SmallTurret.png" id="2_lsl6h"]
+
+[resource]
+script = ExtResource("1_xikdf")
+texture = ExtResource("2_lsl6h")
+name = "Small Turret"
+ammount = 1
+max_stack = 1
+description = ""
+tag = "small_turret"
+need_snap = false
+type = "build"

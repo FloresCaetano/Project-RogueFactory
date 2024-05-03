@@ -14,7 +14,7 @@ func rotate_build():
 	if Input.is_action_just_pressed("R"):
 		rotation_degrees.y += 90
 
-func callable(floor, preview, handler): 
+func callable(_floor, _preview, handler): 
 	handler.can_build = false
 
 func mouse_interaction():

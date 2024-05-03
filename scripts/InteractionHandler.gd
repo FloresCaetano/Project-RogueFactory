@@ -15,14 +15,16 @@ var valid_material = load("res://materials/valid_build.tres")
 var invalid_material = load("res://materials/invalid_build.tres")
 
 func _ready():
+	#TODO: MOVE TO MAIN MENU LOAD BUTTON
 	for key in GLOBAL.game_data.buildings.keys():
 		var build_data = GLOBAL.game_data.buildings[key]
-		var build : RigidBody3D = load(build_data["path"]).instantiate()
-		Player.add_sibling.call_deferred(build)
-		build.set_global_position.call_deferred(build_data["position"])
-		build.set_rotation.call_deferred(build_data["rotation"])
-		build.set_collision_layer.call_deferred(0b11)
-		build.id = build_data["id"]
+		var loaded_build : RigidBody3D = load(build_data["path"]).instantiate()
+		Player.add_sibling.call_deferred(loaded_build)
+		loaded_build.set_global_position.call_deferred(build_data["position"])
+		loaded_build.set_rotation.call_deferred(build_data["rotation"])
+		loaded_build.set_collision_layer.call_deferred(0b11)
+		loaded_build.id = build_data["id"]
+		loaded_build.load_data.call_deferred(build_data)
 		
 
 func _physics_process(_delta):

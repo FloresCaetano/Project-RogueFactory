@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cf8raw2n4h2rq"]
+[gd_scene load_steps=11 format=3 uid="uid://cf8raw2n4h2rq"]
 
 [ext_resource type="Script" path="res://scenes/UI/hud.gd" id="1_k20gc"]
 [ext_resource type="Script" path="res://scenes/UI/inventory_ui.gd" id="2_jdgrm"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://by42k7fv46sbi" path="res://scenes/UI/inv_ui_slot.tscn" id="4_n8ot2"]
 [ext_resource type="Resource" uid="uid://d3f10qfe1vbye" path="res://inventory/items/res_SmallOven.tres" id="6_2oxck"]
 [ext_resource type="Resource" uid="uid://d0557qgxupig3" path="res://inventory/items/res_StraightBelt.tres" id="6_mll3x"]
+[ext_resource type="Resource" uid="uid://1a2jugcrn0rj" path="res://inventory/items/res_SmallTurret.tres" id="7_lra6d"]
 [ext_resource type="PackedScene" uid="uid://cc7m5s5xkwn5x" path="res://scenes/UI/hotbar_cursor.tscn" id="7_q236m"]
 
 [node name="Hud" type="Control" groups=["Hud"]]
@@ -55,7 +56,7 @@ custom_minimum_size = Vector2(331, 114)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("2_jdgrm")
-items = Array[Resource("res://inventory/Invetory_Item.gd")]([null, ExtResource("4_be63k"), ExtResource("6_mll3x"), ExtResource("3_nh8cx"), ExtResource("6_2oxck"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[Resource("res://inventory/Invetory_Item.gd")]([null, ExtResource("4_be63k"), ExtResource("6_mll3x"), ExtResource("3_nh8cx"), ExtResource("6_2oxck"), ExtResource("7_lra6d"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 
 [node name="NinePatchRect" type="NinePatchRect" parent="VSplitContainer2/VSplitContainer/CenterContainer/InventoryUI"]
 layout_mode = 0

@@ -44,6 +44,5 @@ mesh = SubResource("ArrayMesh_al5ln")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 shape = SubResource("BoxShape3D_2op2h")

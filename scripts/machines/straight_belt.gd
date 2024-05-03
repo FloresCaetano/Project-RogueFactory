@@ -44,169 +44,198 @@ func check_behavior(interaction_ray : Dictionary) -> Dictionary:
 
 func rotate_build():
 	if Input.is_action_just_pressed("R"):
-		var curve_0 = load("res://conveyor_paths/curve_belt_0_path.tres")
-		var curve_180 = load("res://conveyor_paths/curve_belt_180_path.tres")
 		if connected_belts[1] is RigidBody3D and side.split("-")[0] == "back":
 			if side == "back-front":
 				side = "back-right"
-				conveyor_path = "CurvePath/PathFollow3D"
-				raycasts[0].target_position = Vector3(1, 0, 0)
-				raycasts[1].target_position = Vector3(0, 0, 1)
-				$CurvePath.curve = curve_180
-				turn_off(straight_belt)
-				turn_on(curve_belt)
+				change_side()
 			elif side == "back-right":
 				side = "back-left"
-				conveyor_path = "CurvePath/PathFollow3D"
-				raycasts[0].target_position = Vector3(0, 0, 1)
-				raycasts[1].target_position = Vector3(1, 0, 0)
-				$CurvePath.curve = curve_0
-				rotation.y = deg_to_rad(-90)
-				turn_off(straight_belt)
-				turn_on(curve_belt)
+				change_side()
 			elif side == "back-left":
 				side = "left-right"
-				conveyor_path = "StraightPath/PathFollow3D"
-				raycasts[0].target_position = Vector3(0, 0, -1)
-				raycasts[1].target_position = Vector3(0, 0, 1)
-				$CurvePath.curve = curve_0
-				rotation.y = deg_to_rad(-90)
-				turn_on(straight_belt)
-				turn_off(curve_belt)
+				change_side()
 		elif connected_belts[1] is RigidBody3D and side.split("-")[0] == "right":
 			if side == "right-left":
 				side = "right-front"
-				conveyor_path = "CurvePath/PathFollow3D"
-				raycasts[0].target_position = Vector3(1, 0, 0)
-				raycasts[1].target_position = Vector3(0, 0, 1)
-				$CurvePath.curve = curve_180
-				turn_off(straight_belt)
-				turn_on(curve_belt)
+				change_side()
 			elif side == "right-front":
 				side = "right-back"
-				conveyor_path = "CurvePath/PathFollow3D"
-				raycasts[0].target_position = Vector3(0, 0, 1)
-				raycasts[1].target_position = Vector3(1, 0, 0)
-				$CurvePath.curve = curve_180
-				rotation.y = deg_to_rad(0)
-				turn_off(straight_belt)
-				turn_on(curve_belt)
+				change_side()
 			elif side == "right-back":
 				side = "back-front"
-				conveyor_path = "StraightPath/PathFollow3D"
-				raycasts[0].target_position = Vector3(0, 0, -1)
-				raycasts[1].target_position = Vector3(0, 0, 1)
-				$CurvePath.curve = curve_0
-				rotation.y = deg_to_rad(0)
-				turn_on(straight_belt)
-				turn_off(curve_belt)
+				change_side()
 		elif connected_belts[1] is RigidBody3D and side.split("-")[0] == "front":
 			if side == "front-back":
 				side = "front-left"
-				conveyor_path = "CurvePath/PathFollow3D"
-				raycasts[0].target_position = Vector3(1, 0, 0)
-				raycasts[1].target_position = Vector3(0, 0, 1)
-				$CurvePath.curve = curve_180
-				turn_off(straight_belt)
-				turn_on(curve_belt)
+				change_side()
 			elif side == "front-left":
 				side = "front-right"
-				conveyor_path = "CurvePath/PathFollow3D"
-				raycasts[0].target_position = Vector3(0, 0, 1)
-				raycasts[1].target_position = Vector3(1, 0, 0)
-				$CurvePath.curve = curve_0
-				rotation.y = deg_to_rad(90)
-				turn_off(straight_belt)
-				turn_on(curve_belt)
+				change_side()
 			elif side == "front-right":
 				side = "right-left"
-				conveyor_path = "StraightPath/PathFollow3D"
-				raycasts[0].target_position = Vector3(0, 0, -1)
-				raycasts[1].target_position = Vector3(0, 0, 1)
-				$CurvePath.curve = curve_0
-				rotation.y = deg_to_rad(90)
-				turn_on(straight_belt)
-				turn_off(curve_belt)
+				change_side()
 		elif connected_belts[1] is RigidBody3D and side.split("-")[0] == "left":
 			if side == "left-right":
 				side = "left-back"
-				conveyor_path = "CurvePath/PathFollow3D"
-				raycasts[0].target_position = Vector3(1, 0, 0)
-				raycasts[1].target_position = Vector3(0, 0, 1)
-				$CurvePath.curve = curve_180
-				turn_off(straight_belt)
-				turn_on(curve_belt)
+				change_side()
 			elif side == "left-back":
 				side = "left-front"
-				conveyor_path = "CurvePath/PathFollow3D"
-				raycasts[0].target_position = Vector3(0, 0, 1)
-				raycasts[1].target_position = Vector3(1, 0, 0)
-				$CurvePath.curve = curve_0
-				rotation.y = deg_to_rad(180)
-				turn_off(straight_belt)
-				turn_on(curve_belt)
+				change_side()
 			elif side == "left-front":
 				side = "front-back"
-				conveyor_path = "StraightPath/PathFollow3D"
-				raycasts[0].target_position = Vector3(0, 0, -1)
-				raycasts[1].target_position = Vector3(0, 0, 1)
-				$CurvePath.curve = curve_0
-				rotation.y = deg_to_rad(180)
-				turn_on(straight_belt)
-				turn_off(curve_belt)
+				change_side()
 		elif side == "back-front":
 			side = "left-right"
-			conveyor_path = "StraightPath/PathFollow3D"
-			raycasts[0].target_position = Vector3(0, 0, -1)
-			raycasts[1].target_position = Vector3(0, 0, 1)
-			$CurvePath.curve = curve_0
-			rotation.y = deg_to_rad(-90)
-			turn_on(straight_belt)
-			turn_off(curve_belt)
+			change_side()
 		elif side == "left-right":
 			side = "front-back"
-			conveyor_path = "StraightPath/PathFollow3D"
-			raycasts[0].target_position = Vector3(0, 0, -1)
-			raycasts[1].target_position = Vector3(0, 0, 1)
-			$CurvePath.curve = curve_0
-			rotation.y = deg_to_rad(180)
-			turn_on(straight_belt)
-			turn_off(curve_belt)
+			change_side()
 		elif side == "front-back":
 			side = "right-left"
-			conveyor_path = "StraightPath/PathFollow3D"
-			raycasts[0].target_position = Vector3(0, 0, -1)
-			raycasts[1].target_position = Vector3(0, 0, 1)
-			$CurvePath.curve = curve_0
-			rotation.y = deg_to_rad(90)
-			turn_on(straight_belt)
-			turn_off(curve_belt)
+			change_side()
 		elif side == "right-left":
 			side = "back-front"
-			conveyor_path = "StraightPath/PathFollow3D"
-			raycasts[0].target_position = Vector3(0, 0, -1)
-			raycasts[1].target_position = Vector3(0, 0, 1)
-			$CurvePath.curve = curve_0
-			rotation.y = deg_to_rad(0)
-			turn_on(straight_belt)
-			turn_off(curve_belt)
+			change_side()
 		else:
 			side = "back-front"
-			conveyor_path = "StraightPath/PathFollow3D"
-			raycasts[0].target_position = Vector3(0, 0, -1)
-			raycasts[1].target_position = Vector3(0, 0, 1)
-			$CurvePath.curve = curve_0
-			rotation.y = deg_to_rad(0)
-			turn_on(straight_belt)
-			turn_off(curve_belt)
+			change_side()
 
-func callable(conveyor, preview, handler): 
+func callable(conveyor, preview, _handler): 
 	conveyor.side = preview.side
 	conveyor.conveyor_path = preview.conveyor_path
 	conveyor.call("check_connections")
+	save_data.call_deferred()
 	for belt in conveyor.connected_belts:
 		if belt is RigidBody3D:
 			belt.call("check_connections")
+
+func change_side():
+	var curve_0 = load("res://conveyor_paths/curve_belt_0_path.tres")
+	var curve_180 = load("res://conveyor_paths/curve_belt_180_path.tres")
+	if side == "back-right":
+		conveyor_path = "CurvePath/PathFollow3D"
+		raycasts[0].target_position = Vector3(1, 0, 0)
+		raycasts[1].target_position = Vector3(0, 0, 1)
+		$CurvePath.curve = curve_180
+		turn_off(straight_belt)
+		turn_on(curve_belt)
+	elif side == "back-left":
+		conveyor_path = "CurvePath/PathFollow3D"
+		raycasts[0].target_position = Vector3(0, 0, 1)
+		raycasts[1].target_position = Vector3(1, 0, 0)
+		$CurvePath.curve = curve_0
+		rotation.y = deg_to_rad(-90)
+		turn_off(straight_belt)
+		turn_on(curve_belt)
+	elif side == "left-right":
+		conveyor_path = "StraightPath/PathFollow3D"
+		raycasts[0].target_position = Vector3(0, 0, -1)
+		raycasts[1].target_position = Vector3(0, 0, 1)
+		$CurvePath.curve = curve_0
+		rotation.y = deg_to_rad(-90)
+		turn_on(straight_belt)
+		turn_off(curve_belt)
+	elif side == "right-front":
+		conveyor_path = "CurvePath/PathFollow3D"
+		raycasts[0].target_position = Vector3(1, 0, 0)
+		raycasts[1].target_position = Vector3(0, 0, 1)
+		$CurvePath.curve = curve_180
+		turn_off(straight_belt)
+		turn_on(curve_belt)
+	elif side == "right-back":
+		conveyor_path = "CurvePath/PathFollow3D"
+		raycasts[0].target_position = Vector3(0, 0, 1)
+		raycasts[1].target_position = Vector3(1, 0, 0)
+		$CurvePath.curve = curve_180
+		rotation.y = deg_to_rad(0)
+		turn_off(straight_belt)
+		turn_on(curve_belt)
+	elif side == "back-front":
+		conveyor_path = "StraightPath/PathFollow3D"
+		raycasts[0].target_position = Vector3(0, 0, -1)
+		raycasts[1].target_position = Vector3(0, 0, 1)
+		$CurvePath.curve = curve_0
+		rotation.y = deg_to_rad(0)
+		turn_on(straight_belt)
+		turn_off(curve_belt)
+	elif side == "front-left":
+		conveyor_path = "CurvePath/PathFollow3D"
+		raycasts[0].target_position = Vector3(1, 0, 0)
+		raycasts[1].target_position = Vector3(0, 0, 1)
+		$CurvePath.curve = curve_180
+		turn_off(straight_belt)
+		turn_on(curve_belt)
+	elif side == "front-right":
+		conveyor_path = "CurvePath/PathFollow3D"
+		raycasts[0].target_position = Vector3(0, 0, 1)
+		raycasts[1].target_position = Vector3(1, 0, 0)
+		$CurvePath.curve = curve_0
+		rotation.y = deg_to_rad(90)
+		turn_off(straight_belt)
+		turn_on(curve_belt)
+	elif side == "right-left":
+		conveyor_path = "StraightPath/PathFollow3D"
+		raycasts[0].target_position = Vector3(0, 0, -1)
+		raycasts[1].target_position = Vector3(0, 0, 1)
+		$CurvePath.curve = curve_0
+		rotation.y = deg_to_rad(90)
+		turn_on(straight_belt)
+		turn_off(curve_belt)
+	elif side == "left-back":
+		conveyor_path = "CurvePath/PathFollow3D"
+		raycasts[0].target_position = Vector3(1, 0, 0)
+		raycasts[1].target_position = Vector3(0, 0, 1)
+		$CurvePath.curve = curve_180
+		turn_off(straight_belt)
+		turn_on(curve_belt)
+	elif side == "left-front":
+		conveyor_path = "CurvePath/PathFollow3D"
+		raycasts[0].target_position = Vector3(0, 0, 1)
+		raycasts[1].target_position = Vector3(1, 0, 0)
+		$CurvePath.curve = curve_0
+		rotation.y = deg_to_rad(180)
+		turn_off(straight_belt)
+		turn_on(curve_belt)
+	elif side == "front-back":
+		conveyor_path = "StraightPath/PathFollow3D"
+		raycasts[0].target_position = Vector3(0, 0, -1)
+		raycasts[1].target_position = Vector3(0, 0, 1)
+		$CurvePath.curve = curve_0
+		rotation.y = deg_to_rad(180)
+		turn_on(straight_belt)
+		turn_off(curve_belt)
+	elif side == "left-right":
+		conveyor_path = "StraightPath/PathFollow3D"
+		raycasts[0].target_position = Vector3(0, 0, -1)
+		raycasts[1].target_position = Vector3(0, 0, 1)
+		$CurvePath.curve = curve_0
+		rotation.y = deg_to_rad(-90)
+		turn_on(straight_belt)
+		turn_off(curve_belt)
+	elif side == "front-back":
+		conveyor_path = "StraightPath/PathFollow3D"
+		raycasts[0].target_position = Vector3(0, 0, -1)
+		raycasts[1].target_position = Vector3(0, 0, 1)
+		$CurvePath.curve = curve_0
+		rotation.y = deg_to_rad(180)
+		turn_on(straight_belt)
+		turn_off(curve_belt)
+	elif side == "right-left":
+		conveyor_path = "StraightPath/PathFollow3D"
+		raycasts[0].target_position = Vector3(0, 0, -1)
+		raycasts[1].target_position = Vector3(0, 0, 1)
+		$CurvePath.curve = curve_0
+		rotation.y = deg_to_rad(90)
+		turn_on(straight_belt)
+		turn_off(curve_belt)
+	elif side == "back-front":
+		conveyor_path = "StraightPath/PathFollow3D"
+		raycasts[0].target_position = Vector3(0, 0, -1)
+		raycasts[1].target_position = Vector3(0, 0, 1)
+		$CurvePath.curve = curve_0
+		rotation.y = deg_to_rad(0)
+		turn_on(straight_belt)
+		turn_off(curve_belt)
 
 func turn_off(belts):
 	for belt in belts:
@@ -227,4 +256,17 @@ func move_item():
 		connected_belts[0].get_node(connected_belts[0].conveyor_path).add_child(item_on_top)
 		item_on_top = null
 		path.progress_ratio = 0
+
+func load_data(data):
+	side = data["side"]
+	change_side()
+	var timer = Timer.new()
+	timer.wait_time = 0.1  # Duración del temporizador en segundos
+	timer.one_shot = true  # Configura el temporizador para que se ejecute solo una vez
+	timer.connect("timeout", check_connections)
+	add_child(timer)
+	timer.start()
+
+func save_data():
+	GLOBAL.game_data.buildings[id].side = side
 	

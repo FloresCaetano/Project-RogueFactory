@@ -2,7 +2,6 @@ extends RigidBody3D
 
 var activated = false
 var is_colliding = false
-var load_data : Dictionary
 var id : String
 
 func rotate_build():
@@ -16,7 +15,9 @@ func write_basic_data(path):
 	data.path = path
 	data.position = global_position
 	data.rotation = rotation
+	id = data.id
 	
 	GLOBAL.game_data.buildings[str(get_instance_id())] = data
-	print(GLOBAL.game_data)
 
+func load_data(_data):
+	pass
