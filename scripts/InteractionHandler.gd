@@ -1,11 +1,11 @@
 extends Node
 @onready var Player = $".."
 @onready var MouseRayCast = $"../Pivote/Camera3D/MouseRayCast"
-@onready var Occluder : OccluderInstance3D =  $"../OccluderInstance3D"
 @onready var HUD = get_tree().get_first_node_in_group("Hud")
 #BUILD VARS
 @onready var BuildGrid : GridMap = get_tree().get_nodes_in_group("Build_Grid")[0]
 var construction_name : String
+var construction_type : String
 @onready var construction : PackedScene
 var preview : RigidBody3D
 var global_build_rotation = Vector3.ZERO
@@ -25,7 +25,6 @@ func _ready():
 		loaded_build.set_collision_layer.call_deferred(0b11)
 		loaded_build.id = build_data["id"]
 		loaded_build.load_data.call_deferred(build_data)
-		
 
 func _physics_process(_delta):
 	if Player.can_build:
@@ -78,7 +77,6 @@ func build(build_behavior):
 		timer.connect("timeout", func _on_timer_timeout(): placed_constrution.callable(placed_constrution, preview, self))
 		add_child(timer)
 		timer.start()
-		
 	return placed_constrution
 
 
@@ -101,7 +99,8 @@ func _on_player_build_mode_on():
 	Player.can_build = true
 
 func _on_player_build_mode_off():
-	if Player.can_build == true:
+	if preview != null:
+		construction_type = ""
 		delete_preview()
 		Player.can_build = false
 

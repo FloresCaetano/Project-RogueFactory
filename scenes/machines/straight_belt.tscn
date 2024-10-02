@@ -105,7 +105,6 @@ script = ExtResource("1_amaph")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, -3.57628e-09, -0.01, 0, 0.01, -3.57628e-09, 0, 0, 0)
-visible = false
 mesh = SubResource("ArrayMesh_i5k2a")
 skeleton = NodePath("")
 
@@ -132,6 +131,7 @@ shape = SubResource("BoxShape3D_215bx")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_k1jrc")
 skeleton = NodePath("")
 

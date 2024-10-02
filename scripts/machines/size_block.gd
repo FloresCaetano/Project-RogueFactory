@@ -1,8 +1,8 @@
 extends "res://scripts/machines/machines.gd"
 func check_behavior(interaction_ray : Dictionary) -> Dictionary:
 	rotate_build()
-	if interaction_ray.normal.y == 0:
-		var build_position = interaction_ray.collider.global_position + (interaction_ray.normal)
+	if interaction_ray.collider.is_in_group("SBM_foor"):
+		var build_position = Vector3(interaction_ray.position.x, 7, interaction_ray.position.z)
 		return {"can_build" : true,
 				"build_position" : build_position,
 				"draggable" : true,
@@ -12,7 +12,7 @@ func check_behavior(interaction_ray : Dictionary) -> Dictionary:
 
 func rotate_build():
 	if Input.is_action_just_pressed("R"):
-		rotation_degrees.y += 90
+		rotation_degrees.x += 90
 
 func callable(_floor, _preview, handler): 
 	handler.can_build = false

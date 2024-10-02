@@ -51,16 +51,21 @@ func _process(_delta):
 			open()
 
 func open():
-	Player.desactivate()
 	HUD.inventories_on_screen.append(self)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	Player.Pivote.cameraLock = true
 	visible = true
 	is_open = true
 
 func close():
-	Player.activate()
 	HUD.inventories_on_screen.erase(self)
 	visible = false
 	is_open = false
+	if Player.on_SBC:
+		return
+	Player.Pivote.cameraLock = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 
 func set_item(item_index, item: Item, ammount):
 	var previous_item : Item = items[item_index]

@@ -1,12 +1,49 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd5bmstiotojb"]
+[gd_scene load_steps=9 format=3 uid="uid://cd5bmstiotojb"]
 
 [ext_resource type="Script" path="res://scripts/machines/size_block.gd" id="1_tm4if"]
+[ext_resource type="Texture2D" uid="uid://bobevnxxyexih" path="res://assets/Machines/PixelateMetal_BaseColor.png" id="2_4h6dy"]
 [ext_resource type="PackedScene" uid="uid://cej0lfsrwhpuy" path="res://scenes/collider_check.tscn" id="2_tdpro"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m70cb"]
 margin = 0.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_snqjn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrg8w"]
+resource_name = "MetalMaterial"
+cull_mode = 2
+albedo_texture = ExtResource("2_4h6dy")
+roughness = 0.552786
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_av5ku"]
+_surfaces = [{
+"aabb": AABB(-50, -50, -100, 100, 100, 100),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0, 2, 0, 5, 0, 3, 0, 2, 0, 4, 0, 5, 0, 4, 0, 7, 0, 5, 0, 4, 0, 6, 0, 7, 0, 6, 0, 1, 0, 7, 0, 6, 0, 0, 0, 1, 0, 1, 0, 5, 0, 7, 0, 1, 0, 3, 0, 5, 0, 6, 0, 2, 0, 0, 0, 6, 0, 4, 0, 2, 0),
+"name": "MetalMaterial",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 254, 255, 254, 255, 0, 0, 255, 255, 254, 255, 254, 255, 0, 0, 0, 0, 254, 255, 0, 0, 0, 0, 255, 255, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 254, 255, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_y1vdt"]
+resource_name = "PISO_Mesh"
+_surfaces = [{
+"aabb": AABB(-50, -50, -100, 100, 100, 100),
+"attribute_data": PackedByteArray(255, 29, 98, 191, 87, 93, 66, 1, 96, 93, 190, 254, 182, 156, 64, 1, 191, 156, 188, 254, 28, 220, 91, 191, 94, 93, 95, 191, 94, 93, 95, 191, 94, 93, 95, 191, 189, 156, 93, 191, 189, 156, 93, 191, 189, 156, 93, 191, 92, 93, 0, 128, 92, 93, 0, 128, 92, 93, 0, 128, 187, 156, 254, 127, 187, 156, 254, 127, 187, 156, 254, 127, 252, 29, 3, 128, 89, 93, 161, 64, 89, 93, 161, 64, 184, 156, 159, 64, 184, 156, 159, 64, 26, 220, 251, 127),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray(2, 0, 10, 0, 4, 0, 2, 0, 8, 0, 10, 0, 7, 0, 16, 0, 9, 0, 7, 0, 14, 0, 16, 0, 13, 0, 21, 0, 15, 0, 13, 0, 19, 0, 21, 0, 20, 0, 3, 0, 22, 0, 20, 0, 1, 0, 3, 0, 5, 0, 17, 0, 23, 0, 5, 0, 11, 0, 17, 0, 18, 0, 6, 0, 0, 0, 18, 0, 12, 0, 6, 0),
+"material": SubResource("StandardMaterial3D_rrg8w"),
+"name": "MetalMaterial",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 254, 255, 254, 255, 255, 255, 0, 0, 254, 255, 254, 255, 0, 128, 0, 0, 254, 255, 254, 255, 255, 191, 255, 255, 254, 255, 254, 255, 0, 128, 255, 255, 254, 255, 254, 255, 255, 191, 255, 255, 254, 255, 254, 255, 255, 255, 0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 254, 255, 0, 0, 255, 191, 255, 255, 254, 255, 0, 0, 255, 255, 255, 255, 254, 255, 0, 0, 255, 191, 255, 255, 254, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 191, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 191, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 254, 255, 255, 255, 0, 0, 0, 0, 254, 255, 255, 191, 0, 0, 0, 0, 254, 255, 0, 128, 255, 255, 0, 0, 254, 255, 255, 191, 255, 255, 0, 0, 254, 255, 0, 128, 255, 255, 0, 0, 254, 255, 255, 255, 255, 255, 255, 191, 255, 127, 255, 127, 250, 255, 1, 128, 255, 127, 255, 127, 250, 255, 1, 128, 0, 0, 255, 191, 255, 255, 255, 191, 252, 255, 1, 128, 250, 255, 1, 128, 252, 255, 1, 128, 250, 255, 1, 128, 0, 0, 255, 191, 255, 255, 255, 191, 4, 0, 253, 127, 252, 255, 1, 128, 4, 0, 253, 127, 252, 255, 1, 128, 0, 0, 255, 191, 255, 255, 255, 191, 4, 0, 253, 127, 255, 127, 255, 127, 4, 0, 253, 127, 255, 127, 255, 127, 0, 0, 255, 191)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_av5ku")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_it3ua"]
 margin = 0.1
@@ -23,10 +60,10 @@ script = ExtResource("1_tm4if")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_m70cb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-layers = 2
-mesh = SubResource("BoxMesh_snqjn")
+[node name="MetalCube" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_y1vdt")
+skeleton = NodePath("")
 
 [node name="ColliderCheck" parent="." instance=ExtResource("2_tdpro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

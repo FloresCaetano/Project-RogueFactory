@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmku1l1nqkxdh"]
+
+[ext_resource type="Script" path="res://scripts/machines/BuildingTerminal.gd" id="1_qonu5"]
+[ext_resource type="PackedScene" uid="uid://cej0lfsrwhpuy" path="res://scenes/collider_check.tscn" id="2_kf715"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nmxvw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yyim4"]
+albedo_color = Color(1, 0.574648, 0.78818, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ly1n3"]
+
+[node name="BuildingTerminal" type="RigidBody3D" groups=["interactable"]]
+freeze = true
+script = ExtResource("1_qonu5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_nmxvw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = SubResource("StandardMaterial3D_yyim4")
+mesh = SubResource("BoxMesh_ly1n3")
+
+[node name="ColliderCheck" parent="." instance=ExtResource("2_kf715")]
+
+[node name="CollisionShape3D" parent="ColliderCheck" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[editable path="ColliderCheck"]

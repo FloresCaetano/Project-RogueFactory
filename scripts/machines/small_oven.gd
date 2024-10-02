@@ -19,16 +19,16 @@ func check_connections():
 			connected_belt = output_ray.get_collider()
 
 func burn():
-	if inventory.items[0] is Item:
-		var item : Item = inventory.items[0]
-		inventory.set_item(1, item, 1)
-		inventory.remove_item(0, 1)
-	if inventory.items[1] is Item and connected_belt is RigidBody3D:
-		if connected_belt.item_on_top == null:
-			var entity_item = load("res://scenes/machines/"+ inventory.items[1].tag + ".tscn").instantiate()
-			connected_belt.get_node(connected_belt.conveyor_path).add_child(entity_item)
-			connected_belt.item_on_top = entity_item
-			inventory.remove_item(1, 1)
+		if inventory.items[0] is Item:
+			var item : Item = inventory.items[0]
+			inventory.set_item(1, item, 1)
+			inventory.remove_item(0, 1)
+		if inventory.items[1] is Item and connected_belt is RigidBody3D:
+			if connected_belt.item_on_top == null and inventory.items[1].type == "material":
+				var entity_item = load("res://scenes/" + inventory.items[1].tag + ".tscn").instantiate()
+				connected_belt.get_node(connected_belt.conveyor_path).add_child(entity_item)
+				connected_belt.item_on_top = entity_item
+				inventory.remove_item(1, 1)
 
 func _on_burning_time_timeout():
 	check_connections()
@@ -36,7 +36,6 @@ func _on_burning_time_timeout():
 
 func check_behavior(interaction_ray : Dictionary) -> Dictionary:
 	rotate_build()
-	get_tree().get_first_node_in_group("Build_Grid").cell_size = Vector3(2, 2, 2)
 	var build_position = interaction_ray.collider.global_position + (interaction_ray.normal)
 	return {"can_build" : true,
 			"build_position" : build_position,

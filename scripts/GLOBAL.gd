@@ -1,4 +1,8 @@
 extends Node
+#Config Menu
+var look_sensitivity = 0.25
+
+#Save System
 var save_path = "user://save_game_dat"
 
 var game_data : Dictionary = {

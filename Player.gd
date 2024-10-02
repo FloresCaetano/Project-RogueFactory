@@ -14,12 +14,12 @@ var drag_target_data
 #SIGNALS
 signal build_mode_on
 signal build_mode_off
-#STATES
-var can_build = false
-var can_move = true
-var can_jump = true
-var is_jumping = false
-var can_move_camera = true
+#FLAGS
+var can_build : bool = false
+var can_move : bool = true
+var can_jump : bool = true
+var is_jumping : bool = false
+var on_SBC : bool = false
 
 #JUMP
 var max_height = 0.7
@@ -38,16 +38,16 @@ func _physics_process(delta):
 		move(delta, get_input())
 
 func move(delta, input):
-	var max_speed = 4
-	var acceleration = 0.04
+	var max_speed = 5
+	var acceleration = 0.1
 	var desaceleration = 0.2
 	var impulse = Vector3(
-		Pivote.transform.basis.x.x * input.x + Pivote.transform.basis.z.x * input.z,
+		transform.basis.x.x * input.x + transform.basis.z.x * input.z,
 		0,
-		Pivote.transform.basis.x.z * input.x + Pivote.transform.basis.z.z * input.z
+		transform.basis.x.z * input.x + transform.basis.z.z * input.z
 		).normalized() * max_speed
 	velocity.y -= gravity * delta
-	if input.x != 0 or input.z != 0:
+	if input.x != 0 or input.z != 0: #TODO:Very stupid from you to do this, pls refactor
 		velocity.x = lerp(velocity.x, impulse.x, acceleration)
 		velocity.z = lerp(velocity.z, impulse.z, acceleration)
 	else:
@@ -117,14 +117,13 @@ func _on_coyote_time_timeout():
 
 func desactivate():
 	can_move = false
-	can_move_camera = false
+	Pivote.cameraLock = true
 	if can_build:
 		build_mode_off.emit()
-		build_mode_on.emit()
 
 func activate():
 	can_move = true
-	can_move_camera = true
+	Pivote.cameraLock = false
 
 func get_facing():
 	if Pivote.rotation > deg_to_rad(0) and Pivote.rotation < deg_to_rad(90):

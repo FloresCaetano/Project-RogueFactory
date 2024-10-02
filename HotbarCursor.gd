@@ -41,6 +41,11 @@ func send_slot_data(slot):
 			Player.emit_signal("build_mode_off")
 		InteractionHandler.construction_name = item.tag
 		Player.emit_signal("build_mode_on")
+	elif item is Item and (item.type == "spaceship_part"):
+		InteractionHandler.construction_name = item.tag
+		InteractionHandler.construction_type = item.type
+		InteractionHandler.construction = load("res://scenes/machines/"+ InteractionHandler.construction_name +".tscn")
+		InteractionHandler.create_preview()
 	else:
 		Player.emit_signal("build_mode_off")
 	

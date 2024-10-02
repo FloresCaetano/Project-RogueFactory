@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dqbdv7ejnbuo1"]
+
+[ext_resource type="Script" path="res://inventory/Invetory_Item.gd" id="1_in8h6"]
+[ext_resource type="Texture2D" uid="uid://cpx0fsbdsciuo" path="res://assets/items/icons/Icon_BruteIron.png" id="2_l8my2"]
+
+[resource]
+script = ExtResource("1_in8h6")
+texture = ExtResource("2_l8my2")
+name = "BruteIron"
+ammount = 20
+max_stack = 50
+description = ""
+tag = "materials/brute_iron"
+need_snap = false
+type = "material"

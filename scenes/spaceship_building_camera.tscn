@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://kse3ome5p1mb"]
+
+[ext_resource type="Script" path="res://scripts/SpaceshipBuildingCamera.gd" id="1_s62vc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pqmvf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fdakh"]
+size = Vector3(50, 1, 50)
+
+[node name="SpaceshipBuildingCamera" type="CharacterBody3D"]
+script = ExtResource("1_s62vc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_pqmvf")
+disabled = true
+
+[node name="SBCPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="SBCPivot"]
+transform = Transform3D(-1, -4.76139e-08, 7.33189e-08, 0, 0.838671, 0.544639, -8.74228e-08, 0.544639, -0.838671, 0, 13, -13)
+
+[node name="SBM_Floor" type="Area3D" parent="." groups=["SBM_foor"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SBM_Floor"]
+shape = SubResource("BoxShape3D_fdakh")
